@@ -1,0 +1,463 @@
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar {
+  width: 16rem;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.sidebarUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  rounded-full: 1;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+
+.avatarBadge {
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  padding: 0.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  transform: scale-75;
+}
+
+.sidebarNav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #666;
+  transition: all 0.2s;
+  border-radius: 0.5rem;
+}
+
+.navLink:hover {
+  background-color: #f3f4f6;
+}
+
+.navLinkActive {
+  color: #000;
+  font-weight: 600;
+}
+
+.navIcon {
+  width: 1.5rem;
+}
+
+.sidebarFooter {
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logoutBtn {
+  font-size: 0.875rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoutBtn:hover {
+  color: #000;
+}
+
+.footerLink {
+  font-size: 0.625rem;
+  color: #3b82f6;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 2.5rem;
+  background-color: white;
+  position: relative;
+}
+
+.topIcons {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  color: #4b5563;
+}
+
+.topIconBtn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.topIconBtn:hover {
+  color: #000;
+}
+
+.pageHeader {
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.pageSubtitle {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.contentGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.leftColumn {
+  flex: 1;
+  max-width: 42rem;
+}
+
+.rightColumn {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .rightColumn {
+    width: 24rem;
+  }
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.editBtn {
+  color: #4b5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.storyText {
+  color: #6b7280;
+  line-height: 1.625;
+}
+
+.readMore {
+  color: #d1d5db;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.overviewTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.overviewDivider {
+  border-color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fieldHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.fieldInput {
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.625rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.skillTag {
+  background-color: #d1d5db;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.skillRemove {
+  font-size: 0.625rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.addSkillBtn {
+  font-size: 0.625rem;
+  background-color: #e5e7eb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: #6b7280;
+  border: none;
+  cursor: pointer;
+}
+
+.addSkillBtn:hover {
+  background-color: #d1d5db;
+}
+
+.profileCard {
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.profileAvatar {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 9999px;
+  border: 1px solid #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.profileAvatarIcon {
+  font-size: 4rem;
+  color: #e5e7eb;
+}
+
+.profileAvatarBtn {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  color: #4b5563;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.profileDivider {
+  width: 100%;
+  height: 1px;
+  background-color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.ratingStars {
+  display: flex;
+  gap: 0.25rem;
+  color: #fbbf24;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.ratingText {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.feeBox {
+  width: 100%;
+  background-color: #f3f4f6;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feeRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feeIconBox {
+  background-color: #e5e7eb;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.feeIcon {
+  font-size: 1.25rem;
+}
+
+.feeContent {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feeLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.feeValue {
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.requestPriceBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #d1d5db;
+  border-radius: 1rem;
+  color: #4b5563;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.requestPriceBtn:hover {
+  background-color: #d1d5db;
+}
+
+.pageFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.saveBtn {
+  padding: 0.75rem 3rem;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.saveBtn:hover {
+  background-color: #9ca3af;
+}
