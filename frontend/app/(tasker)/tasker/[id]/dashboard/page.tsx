@@ -13,6 +13,8 @@ import {
   Mail,
   Clock,
   Sparkles,
+  MoreVertical,
+  Pin,
 } from "lucide-react"
 import styles from "./dashboard.module.css"
 
@@ -26,6 +28,7 @@ const stats = [
 export default function DashboardPage() {
   const [elapsedTime, setElapsedTime] = useState("01:24:12")
   const [activeFilter, setActiveFilter] = useState("all")
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     let seconds = 5052
@@ -42,11 +45,31 @@ export default function DashboardPage() {
 
   const filters = [
     { id: "all", label: "All" },
-    { id: "ongoing", label: "Ongoing" },
     { id: "pending", label: "Pending" },
     { id: "completed", label: "Completed" },
     { id: "cancelled", label: "Cancelled" },
   ]
+
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  const handleMenuSelect = (option: string) => {
+    setMenuOpen(false)
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Element
+      if (!target.closest(`.${styles.menuWrapper}`)) {
+        setMenuOpen(false)
+      }
+    }
+    if (menuOpen) {
+      document.addEventListener("click", handleClickOutside)
+    }
+    return () => document.removeEventListener("click", handleClickOutside)
+  }, [menuOpen])
 
   return (
     <div className={styles.main}>
@@ -101,6 +124,7 @@ export default function DashboardPage() {
           </section>
 
           <section className={styles.card}>
+<div className={styles.filterTabsContainer}>
             <div className={styles.filterTabs}>
               {filters.map((filter) => (
                 <button
@@ -112,7 +136,37 @@ export default function DashboardPage() {
                 </button>
               ))}
             </div>
-
+            <div className={styles.menuWrapper}>
+              <button className={styles.menuBtn} onClick={handleMenuClick}>
+                <MoreVertical className="w-4 h-4" />
+              </button>
+              {menuOpen && (
+                <div className={styles.menuDropdown}>
+                  <button className={styles.menuItem} onClick={() => handleMenuSelect("pinned")}>
+                    Pinned
+                  </button>
+                  <button className={styles.menuItem} onClick={() => handleMenuSelect("select")}>
+                    Select
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+              {/* <div className={styles.menuWrapper}>
+                <button className={styles.menuBtn} onClick={handleMenuClick}>
+                  <MoreVertical className="w-4 h-4" />
+                </button>
+                {menuOpen && (
+                  <div className={styles.menuDropdown}>
+                    <button className={styles.menuItem} onClick={() => handleMenuSelect("pinned")}>
+                      Pinned
+                    </button>
+                    <button className={styles.menuItem} onClick={() => handleMenuSelect("select")}>
+                      Select
+                    </button>
+                  </div>
+                )}
+              </div> */}
             <div className={styles.jobList}>
               <div className={styles.jobCard}>
                 <div className={styles.jobImage} />
@@ -129,6 +183,11 @@ export default function DashboardPage() {
                       <Star className="w-3 h-3" />
                       <Star className="w-3 h-3" />
                     </div>
+                  </div>
+                  <div className={styles.jobActions}>
+                    <button className={styles.pinBtn}>
+                      <Pin className="w-4 h-4" />pinned
+                    </button>
                   </div>
                   <div className={styles.jobMeta}>
                     <span><LayoutGrid className="w-3 h-3" /> Haling Township</span>
@@ -153,6 +212,11 @@ export default function DashboardPage() {
                       <Star className="w-3 h-3" />
                       <Star className="w-3 h-3" />
                     </div>
+                  </div>
+                       <div className={styles.jobActions}>
+                    <button className={styles.pinBtn}>
+                      <Pin className="w-4 h-4" />pin
+                    </button>
                   </div>
                   <div className={styles.jobMeta}>
                     <span><LayoutGrid className="w-3 h-3" /> Haling Township</span>

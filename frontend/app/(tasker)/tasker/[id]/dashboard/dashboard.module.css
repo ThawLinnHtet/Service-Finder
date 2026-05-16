@@ -229,12 +229,18 @@
   background: #16a34a;
 }
 
+.filterTabsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .filterTabs {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .filterTab {
@@ -257,6 +263,54 @@
 .filterTabActive {
   background: #e5e7eb;
   color: #1f2937;
+}
+
+.menuWrapper {
+  position: relative;
+}
+
+.menuBtn {
+  padding: 0.25rem;
+  color: #9ca3af;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.menuBtn:hover {
+  color: #7b68d3;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 6rem;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.menuItem {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4b5563;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menuItem:hover {
+  background: #f3f4f6;
 }
 
 .jobList {
@@ -311,6 +365,27 @@
   display: flex;
   color: #fbbf24;
   gap: 0.125rem;
+}
+
+.jobActions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+}
+
+.pinBtn {
+  padding: 0.25rem;
+  color: #9ca3af;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.pinBtn:hover {
+  color: #7b68d3;
 }
 
 .jobMeta {

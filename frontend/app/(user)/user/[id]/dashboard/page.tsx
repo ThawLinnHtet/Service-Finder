@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Hammer,
   Toolbox,
+  MoreVertical,
 } from "lucide-react"
 import styles from "./dashboard.module.css"
 
@@ -81,13 +82,14 @@ const upcomingBookings: UpcomingBooking[] = [
 
 const tabs = [
   { id: "all", label: "All" },
-  { id: "past", label: "Past Booking" },
-  { id: "confirmed", label: "Confirmed" },
+  { id: "past", label: "Saved" },
+  { id: "confirmed", label: "Completed" },
   { id: "cancelled", label: "Cancelled" },
 ]
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("all")
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const getStatusClass = (status: string) => {
     switch (status) {
@@ -102,6 +104,14 @@ export default function DashboardPage() {
       default:
         return ""
     }
+  }
+
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  const handleMenuSelect = (option: string) => {
+    setMenuOpen(false)
   }
 
   return (
@@ -127,16 +137,33 @@ export default function DashboardPage() {
           </div>
 
           <div className={styles.bookingHistoryCard}>
-            <div className={styles.tabs}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ""}`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  {tab.label}
+            <div className={styles.tabsContainer}>
+              <div className={styles.tabs}>
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ""}`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.menuWrapper}>
+                <button className={styles.menuBtn} onClick={handleMenuClick}>
+                  <MoreVertical className="w-4 h-4" />
                 </button>
-              ))}
+                {menuOpen && (
+                  <div className={styles.menuDropdown}>
+                    <button className={styles.menuItem} onClick={() => handleMenuSelect("pinned")}>
+                      Pinned
+                    </button>
+                    <button className={styles.menuItem} onClick={() => handleMenuSelect("select")}>
+                      Select
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className={styles.bookingList}>

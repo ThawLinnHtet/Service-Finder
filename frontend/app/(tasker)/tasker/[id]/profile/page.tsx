@@ -32,6 +32,7 @@ export default function ProfilePage() {
     { label: "Tasker Name", value: "Aung Kaung Myat", type: "text" },
     { label: "Location", value: "Haling, Yangon, Myanmar", type: "text" },
     { label: "Ph No", value: "09774271230", type: "text" },
+    { label: "Service Name", value: "Cleaning Services - House Cleaning", type: "text" },
     { label: "Service Area", value: "Yangon", type: "text" },
     { label: "Email", value: "kaung123@gmail.com", type: "email" },
     { label: "Password", value: "********", type: "password" },
