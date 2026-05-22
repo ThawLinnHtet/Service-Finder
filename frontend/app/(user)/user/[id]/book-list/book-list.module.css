@@ -1,0 +1,749 @@
+/* ─── Page wrapper ─── */
+.main {
+  padding: 0;
+}
+
+/* ─── Section container (white panel) ─── */
+.section {
+  background: white;
+  border-radius: 1.5rem;
+  border: 1px solid #f1f3f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Section Header (Booking List title + counter + menu) ─── */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.headerTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.01em;
+}
+
+.activeBadge {
+  background: #f0edff;
+  color: #6D52C4;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid #e0dafc;
+}
+
+.headerMenuWrapper {
+  position: relative;
+}
+
+.headerMenuBtn {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.headerMenuBtn:hover {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.375rem);
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  z-index: 50;
+  min-width: 11rem;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: #f8fafc;
+}
+
+/* ─── Filter Bar (toggleable) ─── */
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #fafbfc;
+  border-bottom: 1px solid #f1f3f5;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.25rem;
+}
+
+.filterPill {
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: white;
+  color: #64748b;
+}
+
+.filterPill:hover {
+  border-color: #6D52C4;
+  color: #6D52C4;
+}
+
+.filterPillActive {
+  background: #6D52C4;
+  color: white;
+  border-color: #6D52C4;
+}
+
+.filterPillActive:hover {
+  background: #573EB0;
+  border-color: #573EB0;
+  color: white;
+}
+
+/* ─── Bookings list container ─── */
+.list {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  min-height: 24rem;
+  max-height: 37.5rem;
+}
+
+/* ─── Booking Card (purple gradient) ─── */
+.card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6D52C4 0%, #8269D6 100%);
+  color: white;
+  border-radius: 1.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(109, 82, 196, 0.15);
+  min-height: 11rem;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(109, 82, 196, 0.2);
+  transform: translateY(-1px);
+}
+
+.cardCancelled {
+  opacity: 0.65;
+  filter: grayscale(30%);
+}
+
+.cardWave {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 9rem;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Card top row: service info left, provider info right */
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .cardTop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.cardServiceRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cardServiceIcon {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255,255,255,0.12);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.cardServiceName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.125rem;
+}
+
+.cardDateTime {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  opacity: 0.85;
+}
+
+.cardDateTime {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.125rem;
+}
+
+/* Provider block (right side on desktop) */
+.cardProviderBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0,0,0,0.08);
+  border-radius: 1rem;
+  padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.04);
+  flex-shrink: 0;
+}
+
+.cardProviderAvatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: white;
+  color: #6D52C4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.cardProviderName {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cardProviderRating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 0.0625rem;
+}
+
+.cardRatingStar {
+  width: 0.625rem;
+  height: 0.625rem;
+  fill: #fbbf24;
+  stroke: none;
+}
+
+.cardStatusBadge {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  background: white;
+  color: #059669;
+}
+
+.cardStatusCancelled {
+  background: rgba(255,255,255,0.85);
+  color: #dc2626;
+}
+
+.cardStatusRescheduled {
+  color: #d97706;
+}
+
+/* Card bottom row: action buttons */
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+.cardActionBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.cardActionBtn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.cardActionPrimary {
+  background: white;
+  color: #6D52C4;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.cardActionPrimary:hover {
+  background: #f8fafc;
+}
+
+.cardActionSecondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+.cardActionSecondary:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ─── Empty State ─── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.emptyIcon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.35;
+}
+
+.emptyText {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.emptySubtext {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* ─── Pagination ─── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f1f3f5;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background: white;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: #6D52C4;
+  color: #6D52C4;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pageNum {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pageNum:hover {
+  background: #f8fafc;
+}
+
+.pageNumActive {
+  background: #f0edff;
+  color: #6D52C4;
+  font-weight: 700;
+}
+
+/* ─── Modal Overlay ─── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  padding: 1rem;
+}
+
+.modal {
+  background: white;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modalTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modalCloseBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.modalCloseBtn:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.modalDesc {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.375rem;
+}
+
+.formSelect,
+.formInput {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+  outline: none;
+  transition: box-shadow 0.15s;
+  background: white;
+  color: #1e293b;
+}
+
+.formSelect:focus,
+.formInput:focus {
+  box-shadow: 0 0 0 2px rgba(109, 82, 196, 0.15);
+  border-color: #6D52C4;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.modalActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.modalBtn {
+  flex: 1;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  text-align: center;
+}
+
+.modalBtnSecondary {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.modalBtnSecondary:hover {
+  background: #f8fafc;
+}
+
+.modalBtnPrimary {
+  background: #6D52C4;
+  color: white;
+}
+
+.modalBtnPrimary:hover {
+  background: #573EB0;
+}
+
+.modalBtnDanger {
+  background: #ef4444;
+  color: white;
+}
+
+.modalBtnDanger:hover {
+  background: #dc2626;
+}
+
+/* ─── Cancel modal special ─── */
+.cancelIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #fef2f2;
+  color: #ef4444;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.cancelModalTitle {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.cancelModalDesc {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Toast ─── */
+.toastContainer {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  border-left: 4px solid #10b981;
+  min-width: 16rem;
+  max-width: 22rem;
+  pointer-events: auto;
+  animation: toastIn 0.3s ease;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toastError {
+  border-color: #ef4444;
+}
+
+.toastIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toastIconSuccess {
+  color: #10b981;
+}
+
+.toastIconError {
+  color: #ef4444;
+}
+
+.toastMessage {
+  flex: 1;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.toastCloseBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s;
+}
+
+.toastCloseBtn:hover {
+  color: #475569;
+}

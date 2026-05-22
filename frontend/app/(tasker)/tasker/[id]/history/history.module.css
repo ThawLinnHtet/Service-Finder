@@ -1,0 +1,655 @@
+/* ─── Page wrapper ─── */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ─── Filter Pills ─── */
+.filterPills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 0.5rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  background: white;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pill:hover {
+  border-color: #7059c1;
+  color: #7059c1;
+}
+
+.pillActive {
+  background: #7059c1;
+  color: white;
+  border-color: #7059c1;
+}
+
+/* ─── Panel ─── */
+.panel {
+  background: white;
+  border-radius: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Panel Header ─── */
+.panelHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.headerTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3b3a4a;
+  letter-spacing: 0.025em;
+}
+
+.statusBadges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.statusBadgeCompleted {
+  background: #e8fbf1;
+  color: #2cb042;
+}
+
+.statusBadgePending {
+  background: #ecf3ff;
+  color: #3b82f6;
+}
+
+.statusBadgeCancelled {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.menuBtn {
+  padding: 0.25rem;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.menuBtn:hover {
+  color: #7059c1;
+  background: #f3f4f6;
+}
+
+.bulkActionsWrapper {
+  position: relative;
+}
+
+.bulkActionsBtn {
+  padding: 0.5rem 2rem;
+  font-size: 0.875rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: white;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.bulkActionsBtn:hover {
+  border-color: #d1d5db;
+}
+
+.dropdownIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #6b7280;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.25rem;
+  width: 11rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+  z-index: 10;
+  padding: 0.25rem 0;
+}
+
+.dropdownItem {
+  width: 100%;
+  text-align: left;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: #f9fafb;
+}
+
+.dropdownItemDanger {
+  color: #dc2626;
+}
+
+.dropdownItemDanger:hover {
+  background: #fef2f2;
+}
+
+.dropdownDivider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin: 0.25rem 0;
+}
+
+.cancelBtn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 0.5rem;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #e5e7eb;
+}
+
+/* ─── Card List ─── */
+.cardList {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ─── History Card ─── */
+.historyCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.5rem;
+  transition: all 0.2s;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.historyCard:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-color: #d1d5db;
+}
+
+.cardMain {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.imageBox {
+  width: 6rem;
+  height: 4rem;
+  border-radius: 1rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageBox:hover .imageIcon {
+  transform: scale(1.1);
+}
+
+.imageIcon {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.6;
+  transition: transform 0.2s;
+}
+
+.clientInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.clientName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clientLocation {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  margin-top: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.infoIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.serviceDate {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.serviceName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.dateText {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.dateDot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: #d1d5db;
+  flex-shrink: 0;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.starRow {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.15s;
+  color: #d1d5db;
+}
+
+.starBtn:hover {
+  transform: scale(1.2);
+}
+
+.starFilled {
+  color: #f59e0b;
+}
+
+.pinBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s;
+}
+
+.pinBtn:hover {
+  color: #7059c1;
+}
+
+.pinBtnActive {
+  color: #7059c1;
+}
+
+.pinIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.statusText {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 0.125rem;
+}
+
+.statusCompleted {
+  color: #2cb042;
+}
+
+.statusPending {
+  color: #3b82f6;
+}
+
+.statusCancelled {
+  color: #ef4444;
+}
+
+/* ─── Checkbox ─── */
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.checkboxLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkboxBox {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #d1d5db;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background: white;
+}
+
+.checkboxInput:checked + .checkboxBox {
+  background: #7059c1;
+  border-color: #7059c1;
+}
+
+.checkIcon {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.checkboxInput:checked + .checkboxBox .checkIcon {
+  opacity: 1;
+}
+
+/* ─── Empty State ─── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  color: #9ca3af;
+}
+
+.emptyIcon {
+  width: 4rem;
+  height: 4rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.emptyTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.emptySubtitle {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* ─── Pagination ─── */
+.paginationFooter {
+  padding: 1.5rem;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.pageBtn {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.pageBtn:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pageNum {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pageNum:hover {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.pageNumActive {
+  background: #f0ecfc;
+  color: #8670df;
+}
+
+/* ─── Toast ─── */
+.toastContainer {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid;
+  background: white;
+  font-size: 0.875rem;
+  max-width: 24rem;
+  animation: toastIn 0.3s ease-out;
+}
+
+.toastSuccess {
+  border-color: #bbf7d0;
+}
+
+.toastWarning {
+  border-color: #fde68a;
+}
+
+.toastInfo {
+  border-color: #e9d5ff;
+}
+
+.toastIcon {
+  flex-shrink: 0;
+}
+
+.toastIconSuccess { color: #22c55e; }
+.toastIconWarning { color: #f59e0b; }
+.toastIconInfo { color: #8670df; }
+
+.toastMessage {
+  color: #374151;
+  flex: 1;
+}
+
+.toastClose {
+  color: #9ca3af;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.toastClose:hover {
+  color: #4b5563;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .cardMain {
+    flex-wrap: wrap;
+  }
+
+  .rightSection {
+    align-items: flex-start;
+  }
+}

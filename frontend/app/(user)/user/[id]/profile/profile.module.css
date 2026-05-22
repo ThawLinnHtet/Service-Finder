@@ -165,6 +165,12 @@
   color: #9ca3af;
   padding: 0.25rem;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editIconBtn:hover {
@@ -199,6 +205,12 @@
   color: #9ca3af;
   padding: 0.25rem;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .passwordToggle:hover {

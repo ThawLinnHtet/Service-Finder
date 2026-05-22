@@ -66,6 +66,12 @@
   color: #9ca3af;
   transition: color 0.2s;
   padding: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editBtn:hover {
@@ -83,6 +89,10 @@
   font-weight: 700;
   margin-left: 0.25rem;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .readMoreBtn:hover {
@@ -143,6 +153,12 @@
   color: #9ca3af;
   padding: 0.25rem;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fieldEditBtn:hover {
@@ -177,6 +193,12 @@
   color: #9ca3af;
   padding: 0.25rem;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .passwordToggle:hover {
@@ -206,6 +228,13 @@
 .skillRemove {
   color: #6b7280;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 .skillRemove:hover {
@@ -242,6 +271,12 @@
 .addSkillBtn {
   color: #7b68d3;
   padding: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profileCard {
@@ -457,4 +492,142 @@
 
 .scrollLineLong {
   height: 6rem;
+}
+
+/* ─── Change Password Modal ─── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalContainer {
+  background: white;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modalBody {
+  margin-bottom: 1rem;
+}
+
+.modalLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.modalInputWrapper {
+  position: relative;
+}
+
+.modalInput {
+  width: 100%;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.modalInput:focus {
+  border-color: #7b68d3;
+  background: white;
+}
+
+.modalEyeBtn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.modalEyeBtn:hover {
+  color: #475569;
+}
+
+.modalForgotRow {
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+.modalForgotBtn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.modalForgotBtn:hover {
+  color: #7b68d3;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.modalCancelBtn {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #7b68d3;
+  color: #7b68d3;
+  font-weight: 800;
+  border-radius: 9999px;
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modalCancelBtn:hover {
+  background: #f5f3ff;
+}
+
+.modalSaveBtn {
+  flex: 1;
+  padding: 1rem;
+  background: #7b68d3;
+  color: white;
+  font-weight: 800;
+  border-radius: 9999px;
+  border: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(123, 104, 211, 0.25);
+}
+
+.modalSaveBtn:hover {
+  background: #6a57c4;
 }

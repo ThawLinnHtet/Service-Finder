@@ -1,26 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Image, CheckCircle, XCircle } from "lucide-react"
 import styles from "./tasker.module.css"
+import ProviderFormFields from "./components/ProviderFormFields"
+import NrcPhotoSection from "./components/NrcPhotoSection"
+import ActionFooter from "./components/ActionFooter"
+import ToastNotification from "./components/ToastNotification"
 
-interface TaskerData {
-  name: string
-  phone: string
-  email: string
-  password: string
-  specificSkill: string
-  currentLocation: string
-  serviceArea: string
-  serviceDescription: string
-  baseRate: string
-  experienceYear: string
-  nrcFullForm: string
-  nrcFront: string
-  nrcBack: string
-}
-
-const taskerData: TaskerData = {
+const taskerData = {
   name: "Aung Kaung Myat",
   phone: "09774271230",
   email: "aung123@gmail.com",
@@ -48,23 +35,14 @@ export default function AdminTaskerPage({
   })
 
   const handleAction = (type: "accept" | "decline") => {
-    if (type === "accept") {
-      setToast({
-        show: true,
-        message: "Provider registration accepted successfully!",
-        type: "success",
-      })
-    } else {
-      setToast({
-        show: true,
-        message: "Provider registration declined.",
-        type: "error",
-      })
-    }
-
-    setTimeout(() => {
-      setToast((prev) => ({ ...prev, show: false }))
-    }, 3000)
+    setToast({
+      show: true,
+      message: type === "accept"
+        ? "Provider registration accepted successfully!"
+        : "Provider registration declined.",
+      type: type === "accept" ? "success" : "error",
+    })
+    setTimeout(() => setToast((prev) => ({ ...prev, show: false })), 3000)
   }
 
   return (
@@ -72,104 +50,10 @@ export default function AdminTaskerPage({
       <header className={styles.header}>
         <h1 className={styles.title}>Provider Registration Form</h1>
       </header>
-
-      <div className={styles.formContent}>
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Name :</span>
-          <span className={styles.formValue}>{taskerData.name}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Ph No:</span>
-          <span className={styles.formValue}>{taskerData.phone}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Email:</span>
-          <span className={styles.formValue}>{taskerData.email}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Password:</span>
-          <span className={styles.formValue}>{taskerData.password}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Specific Skill:</span>
-          <span className={styles.formValue}>{taskerData.specificSkill}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Current Location:</span>
-          <span className={styles.formValue}>{taskerData.currentLocation}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Service Area:</span>
-          <span className={styles.formValue}>{taskerData.serviceArea}</span>
-        </div>
-
-        <div className={styles.formRowVertical}>
-          <span className={styles.formLabel}>Service Description:</span>
-          <span className={styles.descriptionPlaceholder}>
-            {taskerData.serviceDescription || "(No description provided)"}
-          </span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Base Rate(MMK):</span>
-          <span className={styles.formValue}>{taskerData.baseRate}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>Experience Year:</span>
-          <span className={styles.formValue}>{taskerData.experienceYear}</span>
-        </div>
-
-        <div className={styles.formRow}>
-          <span className={styles.formLabel}>NRC Full Form:</span>
-          <span className={styles.formValue}>{taskerData.nrcFullForm}</span>
-        </div>
-
-        <div className={styles.nrcSection}>
-          <div className={styles.nrcRow}>
-            <div className={styles.nrcItem}>
-              <span className={styles.formLabel}>NRC Photo:</span>
-              <span className={styles.formValue}>Front</span>
-              <div className={styles.nrcImageBox}>
-                <Image className={styles.nrcImageIcon} />
-              </div>
-            </div>
-
-            <div className={styles.nrcItem}>
-              <span className={styles.formValue}>Back</span>
-              <div className={styles.nrcImageBox}>
-                <Image className={styles.nrcImageIcon} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer className={styles.footer}>
-        <button onClick={() => handleAction("decline")} className={styles.btnDecline}>
-          Decline
-        </button>
-        <button onClick={() => handleAction("accept")} className={styles.btnAccept}>
-          Accept
-        </button>
-      </footer>
-
-      {toast.show && (
-        <div className={styles.toast}>
-          {toast.type === "success" ? (
-            <CheckCircle className={styles.toastIconSuccess} />
-          ) : (
-            <XCircle className={styles.toastIconError} />
-          )}
-          <span>{toast.message}</span>
-        </div>
-      )}
+      <ProviderFormFields data={taskerData} />
+      <NrcPhotoSection />
+      <ActionFooter onAction={handleAction} />
+      <ToastNotification show={toast.show} message={toast.message} type={toast.type} />
     </div>
   )
 }

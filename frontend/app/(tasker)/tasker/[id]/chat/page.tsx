@@ -1,17 +1,9 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import {
-  Search,
-  MoreVertical,
-  Phone,
-  Video,
-  Smile,
-  Mic,
-  Send,
-  Circle,
-} from "lucide-react"
 import styles from "./chat.module.css"
+import ContactSidebar from "./components/ContactSidebar"
+import ChatWindow from "./components/ChatWindow"
 
 interface Message {
   id: number
@@ -124,138 +116,20 @@ export default function ChatPage() {
   return (
     <div className={styles.main}>
       <div className={styles.chatLayout}>
-        <div className={styles.contactSidebar}>
-          <div className={styles.contactCard}>
-            <div className={styles.searchBar}>
-              <input
-                type="text"
-                placeholder="Search"
-                className={styles.searchInput}
-              />
-              <Search className={styles.searchIcon} />
-            </div>
-
-            <div className={styles.contactHeader}>
-              <h4 className={styles.contactTitle}>Last Chat</h4>
-              <MoreVertical className={styles.menuIcon} />
-            </div>
-
-            <div className={styles.contactList}>
-              {contacts.map((contact) => (
-                <div
-                  key={contact.id}
-                  className={`${styles.contactItem} ${
-                    contact.isActive ? styles.contactItemActive : ""
-                  }`}
-                  onClick={() => handleContactClick(contact)}
-                >
-                  <img
-                    src={contact.avatar}
-                    alt={contact.name}
-                    className={`${styles.contactAvatar} ${
-                      contact.isActive ? styles.avatarActive : ""
-                    }`}
-                  />
-                  <div className={styles.contactInfo}>
-                    <div className={styles.contactRow}>
-                      <span className={styles.contactName}>{contact.name}</span>
-                      <span className={styles.contactTime}>{contact.time}</span>
-                    </div>
-                    <p className={styles.contactMessage}>{contact.lastMessage}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.illustration}>
-            <img
-              src="https://api.dicebear.com/7.x/shapes/svg?seed=chat"
-              alt="illustration"
-              className={styles.illustrationImg}
-            />
-          </div>
-        </div>
-
-        <div className={styles.chatWindow}>
-          <div className={styles.chatHeader}>
-            <div className={styles.chatHeaderInfo}>
-              <h3 className={styles.chatHeaderName}>{selectedContact.name}</h3>
-              <p className={styles.chatHeaderStatus}>Last seen recently</p>
-            </div>
-            <div className={styles.chatHeaderActions}>
-              <button className={styles.headerActionBtn}>
-                <Phone className="w-5 h-5" />
-              </button>
-              <button className={styles.headerActionBtn}>
-                <Video className="w-5 h-5" />
-              </button>
-              <button className={styles.headerActionBtn}>
-                <MoreVertical className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.messagesArea}>
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`${styles.message} ${
-                  msg.isSender ? styles.messageSender : styles.messageReceiver
-                }`}
-              >
-                <img src={msg.avatar} alt="avatar" className={styles.messageAvatar} />
-                <div
-                  className={`${styles.messageBubble} ${
-                    msg.isSender ? styles.bubbleRight : styles.bubbleLeft
-                  }`}
-                >
-                  <p className={styles.messageText}>{msg.text}</p>
-                </div>
-              </div>
-            ))}
-
-            <div className={styles.typingIndicator}>
-              <div className={styles.typingBubble}>
-                <div className={styles.typingDots}>
-                  <Circle className={styles.dot} />
-                  <Circle className={styles.dot} />
-                  <Circle className={styles.dot} />
-                </div>
-                <span className={styles.typingText}>typing.....</span>
-              </div>
-            </div>
-
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className={styles.inputArea}>
-            <div className={styles.inputWrapper}>
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Write your messages"
-                className={styles.messageInput}
-              />
-              <div className={styles.inputActions}>
-                <button className={styles.inputActionBtn}>
-                  <Smile className="w-5 h-5" />
-                </button>
-                <button className={styles.inputActionBtn}>
-                  <Mic className="w-5 h-5" />
-                </button>
-                <button
-                  className={styles.sendBtn}
-                  onClick={handleSendMessage}
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ContactSidebar
+          contacts={contacts}
+          selectedContact={selectedContact}
+          onContactClick={handleContactClick}
+        />
+        <ChatWindow
+          selectedContact={selectedContact}
+          messages={messages}
+          message={message}
+          onMessageChange={setMessage}
+          onSendMessage={handleSendMessage}
+          onKeyPress={handleKeyPress}
+          messagesEndRef={messagesEndRef}
+        />
       </div>
     </div>
   )
