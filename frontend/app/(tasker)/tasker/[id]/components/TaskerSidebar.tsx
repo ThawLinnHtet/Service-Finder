@@ -1,10 +1,14 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, User, FileText, Clock, MessageSquare, Settings, LogOut } from "lucide-react"
+import { LayoutDashboard, User, FileText, Clock, MessageSquare, Settings, LogOut, PanelLeftOpen, PanelLeftClose, MapPin } from "lucide-react"
 import styles from "../sidebar.module.css"
 
 export default function TaskerSidebar() {
   const pathname = usePathname()
+  const [collapsed, setCollapsed] = useState(false)
 
   const navLinks = [
     { href: "/tasker/123/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -13,17 +17,23 @@ export default function TaskerSidebar() {
     { href: "/tasker/123/history", label: "History", icon: Clock },
     { href: "/tasker/123/chat", label: "Chat", icon: MessageSquare },
     { href: "/tasker/123/settings", label: "Setting", icon: Settings },
+    { href: "/tasker-map/123/map", label: "Map", icon: MapPin },
   ]
 
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.logo}>
-        <h1 className={styles.logoText}>Logo</h1>
+    <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
+      <div className={styles.sidebarTopSection}>
+        <div className={styles.logo}>
+          <h1 className={styles.logoText}>Logo</h1>
+        </div>
+        <button className={styles.panelToggle} onClick={() => setCollapsed(!collapsed)}>
+          {collapsed ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
+        </button>
       </div>
       <div className={styles.userSection}>
         <div className={styles.avatarWrapper}>
           <div className={styles.avatarInner}>
-            <User className="w-8 h-8" />
+            <User className="w-10 h-10" />
           </div>
         </div>
         <h2 className={styles.userName}>Tasker Name</h2>
@@ -44,12 +54,9 @@ export default function TaskerSidebar() {
               </Link>
             )
           })}
-          <Link href="#" className={`${styles.navLink} ${styles.navLinkExit}`}>
-            <LogOut className="w-5 h-5" />
-            <span>Exit</span>
-          </Link>
         </nav>
         <div className={styles.sidebarFooter}>
+          <LogOut className={styles.footerLogoutIcon} />
           <button className={styles.logoutBtn}>Log out</button>
           <p className={styles.termsText}>Terms of Use and Privacy Policy</p>
         </div>

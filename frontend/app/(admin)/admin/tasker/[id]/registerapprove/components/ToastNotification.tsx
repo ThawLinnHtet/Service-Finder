@@ -1,5 +1,5 @@
 import { CheckCircle, XCircle } from "lucide-react"
-import styles from "../tasker.module.css"
+import styles from "../register.module.css"
 
 interface ToastProps {
   show: boolean

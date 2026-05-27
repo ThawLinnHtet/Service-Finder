@@ -171,6 +171,11 @@
   color: #9ca3af;
   cursor: pointer;
   transition: color 0.2s;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .moreBtn:hover {

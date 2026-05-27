@@ -2,7 +2,7 @@ import { RefreshCw } from "lucide-react"
 import TaskerCard from "./TaskerCard"
 import styles from "../map.module.css"
 
-interface Tasker {
+export interface Tasker {
   id: number
   name: string
   rating: number

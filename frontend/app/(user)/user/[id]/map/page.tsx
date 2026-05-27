@@ -8,10 +8,6 @@ import styles from "./map.module.css"
 import MapHeader from "./components/MapHeader"
 import MapContainer from "./components/MapContainer"
 import MapControls from "./components/MapControls"
-import TaskerListSidebar from "./components/TaskerListSidebar"
-import PriceModal from "./components/PriceModal"
-import FilterModal from "./components/FilterModal"
-import SortModal from "./components/SortModal"
 import ProfileModal from "./components/ProfileModal"
 
 interface Tasker {
@@ -129,7 +125,9 @@ export default function MapPage() {
   const [sortOption, setSortOption] = useState("price_asc")
 
   useEffect(() => {
-    if (map.current || !mapContainer.current) return
+    if (map.current || !mapContainer.current) return;
+
+    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ""
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -196,41 +194,36 @@ export default function MapPage() {
   return (
     <div className={styles.main}>
       <MapHeader
+        activeNav={
+          showPriceModal ? "price" :
+          showFilterModal ? "filter" :
+          showSortModal ? "sort" : ""
+        }
+        showPriceModal={showPriceModal}
+        showFilterModal={showFilterModal}
+        showSortModal={showSortModal}
+        showTaskerList={showTaskerList}
+        priceRange={priceRange}
+        availableOnly={availableOnly}
+        noOffersOnly={noOffersOnly}
+        sortOption={sortOption}
+        taskers={taskers}
         onToggleTaskerList={() => toggleModal("taskerList")}
         onTogglePrice={() => toggleModal("price")}
         onToggleFilter={() => toggleModal("filter")}
         onToggleSort={() => toggleModal("sort")}
+        onPriceChange={handlePriceChange}
+        onToggleAvailable={(checked) => setAvailableOnly(checked)}
+        onToggleNoOffers={(checked) => setNoOffersOnly(checked)}
+        onSortChange={(option) => setSortOption(option)}
+        onPriceApply={() => toggleModal("price")}
+        onFilterApply={() => toggleModal("filter")}
+        onSortApply={() => toggleModal("sort")}
+        onTaskerClick={openTaskerProfile}
       />
       <div className={styles.mapContainer}>
         <MapContainer mapContainer={mapContainer} />
         <MapControls map={map} />
-        <TaskerListSidebar
-          taskers={taskers}
-          showTaskerList={showTaskerList}
-          onToggle={() => toggleModal("taskerList")}
-          onTaskerClick={openTaskerProfile}
-        />
-        <PriceModal
-          show={showPriceModal}
-          priceRange={priceRange}
-          onPriceChange={handlePriceChange}
-          onClose={() => toggleModal("price")}
-          onApply={() => toggleModal("price")}
-        />
-        <FilterModal
-          show={showFilterModal}
-          availableOnly={availableOnly}
-          noOffersOnly={noOffersOnly}
-          onToggleAvailable={(checked) => setAvailableOnly(checked)}
-          onToggleNoOffers={(checked) => setNoOffersOnly(checked)}
-          onApply={() => toggleModal("filter")}
-        />
-        <SortModal
-          show={showSortModal}
-          sortOption={sortOption}
-          onSortChange={(option) => setSortOption(option)}
-          onApply={() => toggleModal("sort")}
-        />
         <ProfileModal
           show={showProfileModal}
           tasker={selectedTasker}

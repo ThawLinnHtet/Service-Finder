@@ -1,6 +1,6 @@
 "use client"
 
-import { Star, Hammer, Toolbox } from "lucide-react"
+import { Star, Hammer, Toolbox, XCircle } from "lucide-react"
 import styles from "../dashboard.module.css"
 
 interface UpcomingBooking {
@@ -10,7 +10,7 @@ interface UpcomingBooking {
   dateTime: string
   taskerName: string
   rating: number
-  status: "confirmed" | "assigned"
+  status: "confirmed" | "assigned" | "cancelled"
 }
 
 const upcomingBookings: UpcomingBooking[] = [
@@ -31,6 +31,15 @@ const upcomingBookings: UpcomingBooking[] = [
     taskerName: "Ko Tin Maung",
     rating: 4.5,
     status: "assigned",
+  },
+  {
+    id: 3,
+    service: "Plumbing Repair",
+    icon: XCircle,
+    dateTime: "Mon , Oct 21 • 2:00PM",
+    taskerName: "U Mya",
+    rating: 4.2,
+    status: "cancelled",
   },
 ]
 
@@ -71,6 +80,11 @@ export default function UpcomingBookings() {
               {booking.status === "confirmed" ? (
                 <>
                   <button className={styles.rescheduleBtn}>Reschedule</button>
+                  <button className={styles.cancelBtn}>Cancel</button>
+                </>
+              ) : booking.status === "cancelled" ? (
+                <>
+                  <button className={styles.rescheduleBtn}>Rebook</button>
                   <button className={styles.cancelBtn}>Cancel</button>
                 </>
               ) : (

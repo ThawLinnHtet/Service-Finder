@@ -57,8 +57,8 @@
 }
 
 .storyTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: #222;
 }
 
@@ -105,8 +105,8 @@
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: #222;
   margin-bottom: 0.75rem;
 }
@@ -270,13 +270,22 @@
 
 .addSkillBtn {
   color: #7b68d3;
-  padding: 0.25rem;
+  padding: 0.25rem 0.75rem;
   background: transparent;
-  border: none;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 9999px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.addSkillBtn:hover {
+  border-color: #7b68d3;
+  background: #f5f3ff;
 }
 
 .profileCard {
@@ -629,5 +638,169 @@
 }
 
 .modalSaveBtn:hover {
+  background: #6a57c4;
+}
+
+/* ─── Add Skill Modal ─── */
+.skillModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.skillModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.skillModalContainer {
+  background: white;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+.skillModalCloseBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #9ca3af;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.skillModalCloseBtn:hover {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.skillModalTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+.skillInputWrap {
+  margin-bottom: 1.5rem;
+}
+
+.skillInput {
+  width: 100%;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.skillInput::placeholder {
+  color: #94a3b8;
+}
+
+.skillInput:focus {
+  border-color: #7b68d3;
+  background: white;
+}
+
+.skillSuggestSection {
+  margin-bottom: 2.5rem;
+}
+
+.skillSuggestTitle {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.skillChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skillChip {
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid #e2e8f0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skillChip:hover {
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.skillChipActive {
+  border-color: #7b68d3;
+  background: #f5f3ff;
+  color: #7b68d3;
+}
+
+.skillActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.skillCancelBtn {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #7b68d3;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.875rem;
+  background: transparent;
+  color: #7b68d3;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skillCancelBtn:hover {
+  background: #f5f3ff;
+}
+
+.skillSaveBtn {
+  flex: 1;
+  padding: 1rem;
+  background: #7b68d3;
+  color: white;
+  font-weight: 800;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(123, 104, 211, 0.25);
+  transition: all 0.2s;
+}
+
+.skillSaveBtn:hover {
   background: #6a57c4;
 }

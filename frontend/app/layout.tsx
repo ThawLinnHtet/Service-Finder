@@ -100,11 +100,19 @@ export default function RootLayout({ children }: Props) {
       <html lang="en">
         <head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Pacifico&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          />
         </head>
-        <body style={{ fontFamily: "'Inter', sans-serif" }}>{children}</body>
+        <body style={{ fontFamily: "'Fraunces', serif" }}>{children}</body>
       </html>
     </StoreProvider>
   );

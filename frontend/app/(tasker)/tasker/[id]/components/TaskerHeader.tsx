@@ -4,7 +4,10 @@ import styles from "../sidebar.module.css"
 export default function TaskerHeader() {
   return (
     <header className={styles.header}>
-      <h1 className={styles.headerTitle}>Hello, Tasker</h1>
+      <div>
+        <h1 className={styles.headerTitle}>Hello, Tasker</h1>
+        <p className={styles.headerSubtitle}>Everyday becomes good days with our services</p>
+      </div>
       <div className={styles.headerIcons}>
         <button className={styles.headerIconBtn}>
           <Globe className="w-5 h-5" />

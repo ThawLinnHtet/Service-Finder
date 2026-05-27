@@ -1,4 +1,4 @@
-import styles from "../tasker.module.css"
+import styles from "../register.module.css"
 
 interface TaskerData {
   name: string

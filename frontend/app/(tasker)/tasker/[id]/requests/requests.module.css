@@ -167,8 +167,9 @@
 
 .card {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 1.25rem;
   border: 1px solid #e5e7eb;
@@ -184,25 +185,12 @@
   border-color: #d1d5db;
 }
 
-@media (min-width: 1280px) {
-  .card {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
 .cardRow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  width: 100%;
-}
-
-@media (min-width: 1280px) {
-  .cardRow {
-    width: auto;
-    flex: 1;
-  }
+  flex: 1;
+  min-width: 0;
 }
 
 .dateBlock {
@@ -323,6 +311,7 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   color: #4b5563;
+  margin-left: -0.5rem;
 }
 
 .phoneText {
@@ -334,19 +323,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 100%;
-  justify-content: flex-end;
-  padding-top: 0.75rem;
-  border-top: 1px solid #f3f4f6;
-}
-
-@media (min-width: 1280px) {
-  .cardActions {
-    width: auto;
-    padding-top: 0;
-    border-top: none;
-    flex-shrink: 0;
-  }
+  flex-shrink: 0;
 }
 
 .actionBtns {

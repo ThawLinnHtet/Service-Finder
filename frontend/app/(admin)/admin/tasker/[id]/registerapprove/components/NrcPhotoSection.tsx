@@ -1,5 +1,5 @@
 import { Image } from "lucide-react"
-import styles from "../tasker.module.css"
+import styles from "../register.module.css"
 
 export default function NrcPhotoSection() {
   return (

@@ -49,13 +49,13 @@ export default function ContactSidebar({ contacts, selectedContact, onContactCli
         </div>
       </div>
 
-      <div className={styles.illustration}>
+      {/* <div className={styles.illustration}>
         <img
           src="https://api.dicebear.com/7.x/shapes/svg?seed=chat"
           alt="illustration"
           className={styles.illustrationImg}
         />
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { SquarePen, Plus, X } from "lucide-react"
+import AddSkillModal from "./AddSkillModal"
 import styles from "../profile.module.css"
 
 interface SkillsManagerProps {
@@ -11,18 +12,7 @@ interface SkillsManagerProps {
 }
 
 export default function SkillsManager({ skills, onAdd, onRemove }: SkillsManagerProps) {
-  const [newSkill, setNewSkill] = useState("")
-
-  const handleAdd = () => {
-    if (newSkill.trim()) {
-      onAdd(newSkill.trim())
-      setNewSkill("")
-    }
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") handleAdd()
-  }
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div className={styles.formGroup}>
@@ -41,22 +31,17 @@ export default function SkillsManager({ skills, onAdd, onRemove }: SkillsManager
             </button>
           </div>
         ))}
-        <div className={styles.addSkillRow}>
-          <input
-            type="text"
-            value={newSkill}
-            onChange={(e) => setNewSkill(e.target.value)}
-            placeholder="+ Add skill"
-            className={styles.addSkillInput}
-            onKeyDown={handleKeyDown}
-          />
-          {newSkill && (
-            <button className={styles.addSkillBtn} onClick={handleAdd}>
-              <Plus className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+        <button className={styles.addSkillBtn} onClick={() => setShowModal(true)}>
+          <Plus className="w-4 h-4" />
+          Add Skill
+        </button>
       </div>
+
+      <AddSkillModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSave={onAdd}
+      />
     </div>
   )
 }

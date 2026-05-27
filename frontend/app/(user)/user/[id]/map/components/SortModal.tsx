@@ -1,3 +1,5 @@
+"use client"
+
 import { Clock, DollarSign, TrendingUp } from "lucide-react"
 import styles from "../map.module.css"
 
@@ -6,40 +8,52 @@ interface SortModalProps {
   sortOption: string
   onSortChange: (option: string) => void
   onApply: () => void
+  dropdown?: boolean
 }
 
-export default function SortModal({ show, sortOption, onSortChange, onApply }: SortModalProps) {
-  return (
-    <div className={`${styles.modal} ${show ? "" : styles.modalHidden}`}>
-      <h3 className={styles.sortTitle}>Sort by</h3>
+const options = [
+  { id: "recent", label: "Most recently posted", icon: Clock },
+  { id: "price_asc", label: "Lowest price", icon: DollarSign },
+  { id: "price_desc", label: "Highest price", icon: TrendingUp },
+]
+
+export default function SortModal({ show, sortOption, onSortChange, onApply, dropdown }: SortModalProps) {
+  if (!show) return null
+
+  const content = (
+    <div className={styles.sortModal} onClick={(e) => e.stopPropagation()}>
+      <h2 className={styles.sortLabel}>Sort by</h2>
+
       <div className={styles.sortOptions}>
-        <button
-          className={`${styles.sortOption} ${sortOption === "recent" ? styles.sortOptionActive : ""}`}
-          onClick={() => onSortChange("recent")}
-        >
-          <Clock className="w-5 h-5" />
-          Most recently posted
-        </button>
-        <button
-          className={`${styles.sortOption} ${sortOption === "price_asc" ? styles.sortOptionActive : ""}`}
-          onClick={() => onSortChange("price_asc")}
-        >
-          <DollarSign className="w-5 h-5" />
-          Lowest price
-        </button>
-        <button
-          className={`${styles.sortOption} ${sortOption === "price_desc" ? styles.sortOptionActive : ""}`}
-          onClick={() => onSortChange("price_desc")}
-        >
-          <TrendingUp className="w-5 h-5" />
-          Highest price
-        </button>
+        {options.map((option) => {
+          const Icon = option.icon
+          const isActive = sortOption === option.id
+          return (
+            <button
+              key={option.id}
+              className={`${styles.sortOption} ${isActive ? styles.sortOptionActive : ""}`}
+              onClick={() => onSortChange(option.id)}
+            >
+              <div className={`${styles.sortOptionIcon} ${isActive ? styles.sortOptionIconActive : ""}`}>
+                <Icon className="w-4 h-4" />
+              </div>
+              <span>{option.label}</span>
+            </button>
+          )
+        })}
       </div>
+
       <div className={styles.sortFooter}>
-        <button className={styles.sortApplyBtn} onClick={onApply}>
-          Apply
-        </button>
+        <button className={styles.sortApplyBtn} onClick={onApply}>Apply</button>
       </div>
+    </div>
+  )
+
+  if (dropdown) return content
+
+  return (
+    <div className={styles.sortOverlay} onClick={onApply}>
+      {content}
     </div>
   )
 }

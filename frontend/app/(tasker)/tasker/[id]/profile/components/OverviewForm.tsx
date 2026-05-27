@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter, useParams } from "next/navigation"
 import FormField from "./FormField"
 import SkillsManager from "./SkillsManager"
 import ChangePasswordModal from "./ChangePasswordModal"
@@ -23,6 +24,8 @@ const overviewFields = [
 ]
 
 export default function OverviewForm({ skills, onAddSkill, onRemoveSkill }: OverviewFormProps) {
+  const router = useRouter()
+  const params = useParams()
   const [showPassword, setShowPassword] = useState(false)
   const [showChangePassword, setShowChangePassword] = useState(false)
 
@@ -44,7 +47,7 @@ export default function OverviewForm({ skills, onAddSkill, onRemoveSkill }: Over
             type={field.type}
             showPassword={field.type === "password" ? showPassword : undefined}
             onTogglePassword={field.type === "password" ? () => setShowPassword(!showPassword) : undefined}
-            onEdit={field.type === "password" ? () => setShowChangePassword(true) : undefined}
+            onEdit={field.label === "Service Name" ? () => router.push(`/tasker/${params.id}/profile/changecategory`) : field.type === "password" ? () => setShowChangePassword(true) : undefined}
           />
         ))}
         <SkillsManager skills={skills} onAdd={onAddSkill} onRemove={onRemoveSkill} />

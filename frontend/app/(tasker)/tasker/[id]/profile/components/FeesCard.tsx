@@ -1,9 +1,16 @@
 "use client"
 
+import { useRouter, useParams } from "next/navigation"
 import { Star } from "lucide-react"
 import styles from "../profile.module.css"
 
 export default function FeesCard() {
+  const router = useRouter()
+  const params = useParams()
+
+  const handleRequestPrice = () => {
+    router.push(`/tasker/${params.id}/profile/changeprice`)
+  }
   return (
     <div className={styles.feesCard}>
       <div className={styles.feesContent}>
@@ -15,7 +22,7 @@ export default function FeesCard() {
           <p className={styles.feesSubtitle}>From 20000MMK</p>
         </div>
       </div>
-      <button className={styles.feesBtn}>Request more price</button>
+      <button className={styles.feesBtn} onClick={handleRequestPrice}>Request more price</button>
     </div>
   )
 }

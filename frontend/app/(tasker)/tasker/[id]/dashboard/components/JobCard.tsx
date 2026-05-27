@@ -27,18 +27,20 @@ export default function JobCard({
             <h4 className={styles.jobClientName}>{clientName}</h4>
             <p className={styles.jobServiceType}>{serviceType}</p>
           </div>
-          <div className={styles.jobRating}>
-            <Star className="w-3 h-3" />
-            <Star className="w-3 h-3" />
-            <Star className="w-3 h-3" />
-            <Star className="w-3 h-3" />
-            <Star className="w-3 h-3" />
+          <div className={styles.jobRightCol}>
+            <div className={styles.jobRating}>
+              <Star className="w-3 h-3" />
+              <Star className="w-3 h-3" />
+              <Star className="w-3 h-3" />
+              <Star className="w-3 h-3" />
+              <Star className="w-3 h-3" />
+            </div>
+            <div className={styles.jobActions}>
+              <button className={styles.pinBtn}>
+                <Pin className="w-4 h-4" />{isPinned ? "pinned" : "pin"}
+              </button>
+            </div>
           </div>
-        </div>
-        <div className={styles.jobActions}>
-          <button className={styles.pinBtn}>
-            <Pin className="w-4 h-4" />{isPinned ? "pinned" : "pin"}
-          </button>
         </div>
         <div className={styles.jobMeta}>
           <span><LayoutGrid className="w-3 h-3" /> {location}</span>
