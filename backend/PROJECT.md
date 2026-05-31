@@ -116,6 +116,14 @@ Customer location is important for:
 
 ---
 
+## User/Customer Dashboard
+
+-Show upcoming booking with card
+-Show Filter services with card (All, Saved , Completed , Cancelled)
+-Can edit user information like (username , email ,password , location , phonenumber)
+
+---
+
 ## Provider Features
 
 - Register/Login
@@ -191,6 +199,15 @@ The platform uses Mapbox for:
 
 ---
 
+## Provider Dashboard
+
+-Show new request booking lists with card
+-Can filer customer or client (All , Ongoing , Completed , Cancelled)
+-Show active now in progress job list with time , like time elaspsed
+-Can do complete active now in progress job
+
+---
+
 ## Location Flow
 
 ### Customer
@@ -245,6 +262,13 @@ Example:
 4. Chat is enabled
 5. Job completed
 6. User leaves review
+
+---
+
+## Comment flow
+
+-Every user or customer can comment in each provider
+-Each customer can replie comment
 
 ---
 

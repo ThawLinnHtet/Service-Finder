@@ -1,6 +1,7 @@
 import { prisma } from "../../database/prisma";
+import type { Prisma } from "../../generated/prisma/client";
 import type { UploadedImage } from "../auth/types";
-import type { ResubmitProviderInput } from "./validation";
+import type { ResubmitProviderInput, UpdateProviderProfileInput } from "./validation";
 
 type ResolvedLocation = {
   city: string;
@@ -19,6 +20,95 @@ type ResubmitProviderPayload = {
   userId: string;
   location: ResolvedLocation;
   assets: ResubmitAssets;
+};
+
+type ProviderProfileUpdatePayload = {
+  userId: string;
+  input: UpdateProviderProfileInput;
+  location: ResolvedLocation | null;
+  serviceAreas: string[] | null;
+};
+
+const providerProfileSelect = {
+  id: true,
+  status: true,
+  rejectionReason: true,
+  about: true,
+  ratingAverage: true,
+  ratingCount: true,
+  primaryCategory: {
+    select: {
+      id: true,
+      name: true,
+    },
+  },
+  user: {
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      phone: true,
+      city: true,
+      township: true,
+      address: true,
+      latitude: true,
+      longitude: true,
+      createdAt: true,
+      updatedAt: true,
+      providedServices: {
+        orderBy: { createdAt: "asc" },
+        take: 1,
+        select: {
+          id: true,
+          categoryId: true,
+          title: true,
+          description: true,
+          price: true,
+          experienceYears: true,
+          isActive: true,
+          isVisible: true,
+          isAvailable: true,
+          category: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          serviceSkills: {
+            select: {
+              skill: {
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
+            },
+          },
+          customSkills: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          serviceAreas: {
+            orderBy: { township: "asc" },
+            select: {
+              id: true,
+              city: true,
+              township: true,
+            },
+          },
+        },
+      },
+    },
+  },
+} satisfies Prisma.ProviderProfileSelect;
+
+export const findProviderProfileByUserId = (userId: string) => {
+  return prisma.providerProfile.findUnique({
+    where: { userId },
+    select: providerProfileSelect,
+  });
 };
 
 export const findProviderProfileForResubmit = (userId: string) => {
@@ -270,5 +360,73 @@ export const resubmitProviderVerification = async ({
       providerId: provider.id,
       oldDocuments: provider.documents,
     };
+  });
+};
+
+export const updateProviderProfile = async ({
+  userId,
+  input,
+  location,
+  serviceAreas,
+}: ProviderProfileUpdatePayload) => {
+  return prisma.$transaction(async (tx) => {
+    await tx.user.update({
+      where: { id: userId },
+      data: {
+        username: input.username,
+        email: input.email,
+        phone: input.phone,
+        ...(input.location && location
+          ? {
+              city: location.city,
+              township: location.township,
+              address: input.location.address ?? location.address,
+              latitude: input.location.latitude,
+              longitude: input.location.longitude,
+            }
+          : {}),
+      },
+    });
+
+    if (input.about !== undefined) {
+      await tx.providerProfile.update({
+        where: { userId },
+        data: {
+          about: input.about,
+        },
+      });
+    }
+
+    if (serviceAreas && location) {
+      const services = await tx.service.findMany({
+        where: { providerId: userId },
+        select: { id: true },
+      });
+
+      await tx.serviceArea.deleteMany({
+        where: {
+          serviceId: {
+            in: services.map((service) => service.id),
+          },
+        },
+      });
+
+      if (services.length > 0) {
+        await tx.serviceArea.createMany({
+          data: services.flatMap((service) =>
+            serviceAreas.map((township) => ({
+              serviceId: service.id,
+              city: location.city,
+              township,
+            })),
+          ),
+        });
+      }
+    }
+
+    return tx.providerProfile.findUnique({
+      where: { userId },
+      select: providerProfileSelect,
+    });
   });
 };

@@ -199,6 +199,7 @@ src/
 
 -MUST use cursor pagination (preferred)
 -Default limit: 10–20 items
+-Use default sort as descending if need
 
 Response Format:
 

@@ -21,12 +21,15 @@ import {
   uploadProviderVerificationImages,
 } from "../../common/utils/provider-verification";
 import { reverseGeocodeCoordinates } from "../locations/service";
+import { assertEmailPhoneAvailable } from "../users/service";
 import {
+  findProviderProfileByUserId,
   findProviderProfileForResubmit,
   findProviderResubmitDataByUserId,
   resubmitProviderVerification,
+  updateProviderProfile,
 } from "./repository";
-import type { ResubmitProviderInput } from "./validation";
+import type { ResubmitProviderInput, UpdateProviderProfileInput } from "./validation";
 
 const normalizeNrcCode = (value: string): string => value.trim().toUpperCase();
 
@@ -38,6 +41,126 @@ const toNumber = (value: { toString(): string }): number => {
   }
 
   return parsed;
+};
+
+type ProviderProfileRecord = NonNullable<Awaited<ReturnType<typeof findProviderProfileByUserId>>>;
+
+const toProviderProfileResponse = (provider: ProviderProfileRecord) => {
+  const serviceProfile = provider.user.providedServices[0] ?? null;
+
+  return {
+    account: {
+      id: provider.user.id,
+      username: provider.user.username,
+      email: provider.user.email,
+      phone: provider.user.phone,
+      createdAt: provider.user.createdAt,
+      updatedAt: provider.user.updatedAt,
+    },
+    location: {
+      city: provider.user.city,
+      township: provider.user.township,
+      address: provider.user.address,
+      latitude: toNumber(provider.user.latitude),
+      longitude: toNumber(provider.user.longitude),
+    },
+    provider: {
+      id: provider.id,
+      status: provider.status,
+      rejectionReason: provider.rejectionReason,
+      about: provider.about,
+      ratingAverage: provider.ratingAverage.toString(),
+      ratingCount: provider.ratingCount,
+      primaryCategory: provider.primaryCategory,
+    },
+    serviceProfile: serviceProfile
+      ? {
+          id: serviceProfile.id,
+          categoryId: serviceProfile.categoryId,
+          title: serviceProfile.title,
+          description: serviceProfile.description,
+          price: serviceProfile.price.toString(),
+          experienceYears: serviceProfile.experienceYears,
+          isActive: serviceProfile.isActive,
+          isVisible: serviceProfile.isVisible,
+          isAvailable: serviceProfile.isAvailable,
+          category: serviceProfile.category,
+          predefinedSkills: serviceProfile.serviceSkills.map((entry) => entry.skill),
+          customSkills: serviceProfile.customSkills,
+          serviceAreas: serviceProfile.serviceAreas,
+        }
+      : null,
+  };
+};
+
+const assertApprovedForProfileEdit = (status: "PENDING" | "APPROVED" | "REJECTED") => {
+  if (status === "APPROVED") {
+    return;
+  }
+
+  if (status === "PENDING") {
+    throw new ForbiddenError("Provider account is waiting for admin approval");
+  }
+
+  throw new ForbiddenError("Rejected providers must use the resubmit flow");
+};
+
+export const getProviderProfile = async (providerUserId: string) => {
+  const provider = await findProviderProfileByUserId(providerUserId);
+
+  if (!provider) {
+    throw new AppError("Provider profile not found", 404);
+  }
+
+  return toProviderProfileResponse(provider);
+};
+
+export const updateProviderProfileDetails = async (
+  providerUserId: string,
+  input: UpdateProviderProfileInput,
+) => {
+  const provider = await findProviderProfileByUserId(providerUserId);
+
+  if (!provider) {
+    throw new AppError("Provider profile not found", 404);
+  }
+
+  assertApprovedForProfileEdit(provider.status);
+  await assertEmailPhoneAvailable(providerUserId, input.email, input.phone);
+
+  const resolvedLocation = input.location
+    ? await reverseGeocodeCoordinates(input.location.latitude, input.location.longitude)
+    : null;
+
+  const isCityChanging = Boolean(
+    resolvedLocation && resolvedLocation.city.toLowerCase() !== provider.user.city.toLowerCase(),
+  );
+
+  if (isCityChanging && !input.serviceAreas) {
+    throw new ValidationError([
+      {
+        field: "serviceAreas",
+        message: "Service areas are required when provider city changes",
+      },
+    ]);
+  }
+
+  const normalizedServiceAreas = input.serviceAreas
+    ? validateAndNormalizeServiceAreas(normalizeStringList(input.serviceAreas), resolvedLocation?.city ?? provider.user.city)
+    : null;
+
+  const updatedProvider = await updateProviderProfile({
+    userId: providerUserId,
+    input,
+    location: resolvedLocation,
+    serviceAreas: normalizedServiceAreas,
+  });
+
+  if (!updatedProvider) {
+    throw new AppError("Provider profile not found", 404);
+  }
+
+  return toProviderProfileResponse(updatedProvider);
 };
 
 export const getProviderResubmitData = async (providerUserId: string) => {

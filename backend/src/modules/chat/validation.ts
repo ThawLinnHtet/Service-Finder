@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { parseStringArrayInput } from "../../common/validation/preprocess";
 
 const emptyStringToUndefined = (input: unknown): unknown => {
   if (typeof input !== "string") {
@@ -13,6 +14,33 @@ export const bookingIdParamSchema = z.object({
   params: z
     .object({
       bookingId: z.string({ error: "Booking ID is required" }).uuid("Invalid booking ID"),
+    })
+    .strict(),
+});
+
+export const listChatRoomsSchema = z.object({
+  query: z
+    .object({
+      cursor: z.preprocess(
+        emptyStringToUndefined,
+        z.string().max(1000, "Invalid cursor").optional(),
+      ),
+      limit: z.coerce.number().int().min(1).max(100).default(20),
+    })
+    .strict(),
+});
+
+export const listChatPresenceSchema = z.object({
+  query: z
+    .object({
+      userIds: z
+        .preprocess(parseStringArrayInput, z.array(z.string().uuid("Invalid user ID")))
+        .pipe(
+          z
+            .array(z.string().uuid("Invalid user ID"))
+            .min(1, "At least one user ID is required")
+            .max(100, "Too many user IDs"),
+        ),
     })
     .strict(),
 });
@@ -68,6 +96,16 @@ export const socketJoinChatSchema = z
   })
   .strict();
 
+export const socketTypingSchema = z
+  .object({
+    bookingId: z.string({ error: "Booking ID is required" }).uuid("Invalid booking ID"),
+    isTyping: z.boolean({ error: "isTyping is required" }),
+  })
+  .strict();
+
 export type ListChatMessagesQuery = z.infer<typeof listChatMessagesSchema>["query"];
+export type ListChatRoomsQuery = z.infer<typeof listChatRoomsSchema>["query"];
+export type ListChatPresenceQuery = z.infer<typeof listChatPresenceSchema>["query"];
 export type SendChatMessageInput = z.infer<typeof sendChatMessageSchema>["body"];
 export type SocketChatMessageInput = z.infer<typeof socketChatMessageSchema>;
+export type SocketTypingInput = z.infer<typeof socketTypingSchema>;

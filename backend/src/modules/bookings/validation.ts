@@ -17,9 +17,11 @@ const emptyStringToUndefined = (input: unknown): unknown => {
   return value ? value : undefined;
 };
 
-const optionalDateString = z.preprocess(
+const requiredDateString = z.preprocess(
   emptyStringToUndefined,
-  z.string().datetime("Scheduled date must be a valid ISO datetime").optional(),
+  z
+    .string({ error: "Scheduled date and time is required" })
+    .datetime("Scheduled date must be a valid ISO datetime"),
 );
 
 export const createBookingSchema = z.object({
@@ -36,7 +38,20 @@ export const createBookingSchema = z.object({
             .max(500, "Booking note must be less than 500 characters")
             .optional(),
         ),
-      scheduledAt: optionalDateString,
+      scheduledAt: requiredDateString,
+    })
+    .strict(),
+});
+
+export const rescheduleBookingSchema = z.object({
+  params: z
+    .object({
+      bookingId: z.string({ error: "Booking ID is required" }).uuid("Invalid booking ID"),
+    })
+    .strict(),
+  body: z
+    .object({
+      scheduledAt: requiredDateString,
     })
     .strict(),
 });
@@ -64,3 +79,4 @@ export const bookingIdParamSchema = z.object({
 
 export type CreateBookingInput = z.infer<typeof createBookingSchema>["body"];
 export type ListBookingsQuery = z.infer<typeof listBookingsSchema>["query"];
+export type RescheduleBookingInput = z.infer<typeof rescheduleBookingSchema>["body"];

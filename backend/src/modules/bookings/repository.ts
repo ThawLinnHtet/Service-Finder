@@ -164,6 +164,16 @@ export const updateBookingStatusById = (
   });
 };
 
+export const updateBookingScheduledAtById = (bookingId: string, scheduledAt: Date) => {
+  return prisma.booking.update({
+    where: { id: bookingId },
+    data: {
+      scheduledAt,
+    },
+    select: bookingSelect,
+  });
+};
+
 export const ensureChatRoomForBooking = (bookingId: string) => {
   return prisma.chatRoom.upsert({
     where: { bookingId },

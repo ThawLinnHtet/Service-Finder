@@ -8,7 +8,7 @@ import {
   resolveChatActorFromAuth,
   sendChatMessageFromSocket,
 } from "./service";
-import { socketChatMessageSchema, socketJoinChatSchema } from "./validation";
+import { socketChatMessageSchema, socketJoinChatSchema, socketTypingSchema } from "./validation";
 
 type SocketAuth = {
   userId: string;
@@ -33,6 +33,9 @@ type SocketRateLimitState = {
 let io: Server | null = null;
 
 const socketSendRateState = new Map<string, SocketRateLimitState>();
+const userSocketIds = new Map<string, Set<string>>();
+const socketUserId = new Map<string, string>();
+const userLastSeenAt = new Map<string, Date>();
 const SOCKET_SEND_LIMIT_PER_MINUTE = 30;
 const SOCKET_SEND_WINDOW_MS = 60_000;
 const CHAT_ALLOWED_ROLES = new Set(["CUSTOMER", "PROVIDER"]);
@@ -129,6 +132,64 @@ const checkSocketSendRateLimit = (socketId: string): boolean => {
 
 export const getChatIo = (): Server | null => io;
 
+const registerSocketPresence = (userId: string, socketId: string): boolean => {
+  const existing = userSocketIds.get(userId);
+
+  if (!existing) {
+    userSocketIds.set(userId, new Set([socketId]));
+    socketUserId.set(socketId, userId);
+    userLastSeenAt.delete(userId);
+    return true;
+  }
+
+  existing.add(socketId);
+  socketUserId.set(socketId, userId);
+  userLastSeenAt.delete(userId);
+  return existing.size === 1;
+};
+
+const unregisterSocketPresence = (socketId: string): { userId: string; becameOffline: boolean } | null => {
+  const userId = socketUserId.get(socketId);
+
+  if (!userId) {
+    return null;
+  }
+
+  socketUserId.delete(socketId);
+  const set = userSocketIds.get(userId);
+
+  if (!set) {
+    return { userId, becameOffline: true };
+  }
+
+  set.delete(socketId);
+
+  if (set.size === 0) {
+    userSocketIds.delete(userId);
+    userLastSeenAt.set(userId, new Date());
+    return { userId, becameOffline: true };
+  }
+
+  return { userId, becameOffline: false };
+};
+
+const emitPresence = (payload: { userId: string; online: boolean; lastSeenAt: string | null }) => {
+  io?.emit("chat:presence", payload);
+};
+
+export const getChatUsersPresence = (userIds: string[]) => {
+  return userIds.map((userId) => {
+    const isOnline = (userSocketIds.get(userId)?.size ?? 0) > 0;
+    const lastSeenAt = isOnline ? null : userLastSeenAt.get(userId)?.toISOString() ?? null;
+
+    return {
+      userId,
+      isOnline,
+      lastSeenAt,
+    };
+  });
+};
+
 export const initializeChatSocket = (server: HttpServer): Server => {
   io = new Server(server, {
     cors: {
@@ -166,6 +227,12 @@ export const initializeChatSocket = (server: HttpServer): Server => {
 
   io.on("connection", (rawSocket) => {
     const socket = rawSocket as ChatSocket;
+    const auth = getSocketActor(socket);
+    const becameOnline = registerSocketPresence(auth.userId, socket.id);
+
+    if (becameOnline) {
+      emitPresence({ userId: auth.userId, online: true, lastSeenAt: null });
+    }
 
     socket.on("chat:join", async (payload: unknown, ack?: SocketAck) => {
       try {
@@ -265,8 +332,63 @@ export const initializeChatSocket = (server: HttpServer): Server => {
       }
     });
 
+    socket.on("chat:typing", async (payload: unknown, ack?: SocketAck) => {
+      try {
+        const parsed = socketTypingSchema.safeParse(payload);
+
+        if (!parsed.success) {
+          emitSocketError(socket, "Invalid typing payload");
+          respondAck(ack, { success: false, error: "Invalid typing payload" });
+          return;
+        }
+
+        const auth = getSocketActor(socket);
+        const actor = resolveChatActorFromAuth(auth);
+        const room = await getChatRoomByBooking(actor, parsed.data.bookingId);
+        const channel = getChatRoomChannel(room.bookingId);
+
+        if (!socket.rooms.has(channel)) {
+          const message = "Join chat before sending typing updates";
+          emitSocketError(socket, message);
+          respondAck(ack, { success: false, error: message });
+          return;
+        }
+
+        socket.to(channel).emit("chat:typing", {
+          bookingId: room.bookingId,
+          isTyping: parsed.data.isTyping,
+          user: {
+            id: actor.userId,
+            role: actor.role,
+          },
+        });
+
+        respondAck(ack, {
+          success: true,
+          data: {
+            bookingId: room.bookingId,
+            isTyping: parsed.data.isTyping,
+          },
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Unable to send typing update";
+        emitSocketError(socket, message);
+        respondAck(ack, { success: false, error: message });
+      }
+    });
+
     socket.on("disconnect", () => {
       socketSendRateState.delete(socket.id);
+
+      const result = unregisterSocketPresence(socket.id);
+
+      if (result?.becameOffline) {
+        emitPresence({
+          userId: result.userId,
+          online: false,
+          lastSeenAt: userLastSeenAt.get(result.userId)?.toISOString() ?? null,
+        });
+      }
     });
   });
 

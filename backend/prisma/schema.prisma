@@ -62,6 +62,11 @@ model User {
   messages          Message[]
   reviewsGiven      Review[] @relation("ReviewCustomer")
   reviewsReceived   Review[] @relation("ReviewProvider")
+  savedServices     CustomerSavedService[] @relation("CustomerSavedServices")
+  pinnedCustomers   ProviderPinnedCustomer[] @relation("ProviderPinnedCustomers")
+  pinnedByProviders ProviderPinnedCustomer[] @relation("CustomerPinnedByProviders")
+  archivedBookings  ProviderArchivedBooking[] @relation("ProviderArchivedBookings")
+  chatRoomReadStates ChatRoomReadState[]
 
   @@index([role])
   @@index([township])
@@ -231,6 +236,7 @@ model Service {
   serviceAreas  ServiceArea[]
   bookings      Booking[]
   reviews       Review[]
+  savedByCustomers CustomerSavedService[]
 
   @@index([providerId])
   @@index([categoryId])
@@ -296,6 +302,7 @@ model Booking {
   provider User     @relation("BookingProvider", fields: [providerId], references: [id], onDelete: Cascade)
   chatRoom  ChatRoom?
   review    Review?
+  providerArchivedEntries ProviderArchivedBooking[]
 
   @@index([serviceId])
   @@index([customerId])
@@ -312,6 +319,22 @@ model ChatRoom {
 
   booking  Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
   messages Message[]
+  readStates ChatRoomReadState[]
+}
+
+model ChatRoomReadState {
+  roomId     String
+  userId     String
+  lastReadAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  room ChatRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([roomId, userId])
+  @@index([userId, updatedAt])
+  @@index([roomId, lastReadAt])
 }
 
 model Message {
@@ -348,4 +371,46 @@ model Review {
   @@index([serviceId])
   @@index([customerId])
   @@index([rating])
+}
+
+model CustomerSavedService {
+  id         String   @id @default(uuid())
+  customerId String
+  serviceId  String
+  createdAt  DateTime @default(now())
+
+  customer User    @relation("CustomerSavedServices", fields: [customerId], references: [id], onDelete: Cascade)
+  service  Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, serviceId])
+  @@index([customerId, createdAt])
+  @@index([serviceId])
+}
+
+model ProviderPinnedCustomer {
+  id         String   @id @default(uuid())
+  providerId String
+  customerId String
+  createdAt  DateTime @default(now())
+
+  provider User @relation("ProviderPinnedCustomers", fields: [providerId], references: [id], onDelete: Cascade)
+  customer User @relation("CustomerPinnedByProviders", fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, customerId])
+  @@index([providerId, createdAt])
+  @@index([customerId])
+}
+
+model ProviderArchivedBooking {
+  id         String   @id @default(uuid())
+  providerId String
+  bookingId  String
+  createdAt  DateTime @default(now())
+
+  provider User    @relation("ProviderArchivedBookings", fields: [providerId], references: [id], onDelete: Cascade)
+  booking  Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, bookingId])
+  @@index([providerId, createdAt])
+  @@index([bookingId])
 }

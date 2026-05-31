@@ -66,8 +66,12 @@ export const ModelName = {
   ServiceArea: 'ServiceArea',
   Booking: 'Booking',
   ChatRoom: 'ChatRoom',
+  ChatRoomReadState: 'ChatRoomReadState',
   Message: 'Message',
-  Review: 'Review'
+  Review: 'Review',
+  CustomerSavedService: 'CustomerSavedService',
+  ProviderPinnedCustomer: 'ProviderPinnedCustomer',
+  ProviderArchivedBooking: 'ProviderArchivedBooking'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -293,6 +297,17 @@ export const ChatRoomScalarFieldEnum = {
 export type ChatRoomScalarFieldEnum = (typeof ChatRoomScalarFieldEnum)[keyof typeof ChatRoomScalarFieldEnum]
 
 
+export const ChatRoomReadStateScalarFieldEnum = {
+  roomId: 'roomId',
+  userId: 'userId',
+  lastReadAt: 'lastReadAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ChatRoomReadStateScalarFieldEnum = (typeof ChatRoomReadStateScalarFieldEnum)[keyof typeof ChatRoomReadStateScalarFieldEnum]
+
+
 export const MessageScalarFieldEnum = {
   id: 'id',
   roomId: 'roomId',
@@ -317,6 +332,36 @@ export const ReviewScalarFieldEnum = {
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const CustomerSavedServiceScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  serviceId: 'serviceId',
+  createdAt: 'createdAt'
+} as const
+
+export type CustomerSavedServiceScalarFieldEnum = (typeof CustomerSavedServiceScalarFieldEnum)[keyof typeof CustomerSavedServiceScalarFieldEnum]
+
+
+export const ProviderPinnedCustomerScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  customerId: 'customerId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProviderPinnedCustomerScalarFieldEnum = (typeof ProviderPinnedCustomerScalarFieldEnum)[keyof typeof ProviderPinnedCustomerScalarFieldEnum]
+
+
+export const ProviderArchivedBookingScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  bookingId: 'bookingId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProviderArchivedBookingScalarFieldEnum = (typeof ProviderArchivedBookingScalarFieldEnum)[keyof typeof ProviderArchivedBookingScalarFieldEnum]
 
 
 export const SortOrder = {

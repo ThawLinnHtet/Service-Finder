@@ -399,8 +399,12 @@ export const ModelName = {
   ServiceArea: 'ServiceArea',
   Booking: 'Booking',
   ChatRoom: 'ChatRoom',
+  ChatRoomReadState: 'ChatRoomReadState',
   Message: 'Message',
-  Review: 'Review'
+  Review: 'Review',
+  CustomerSavedService: 'CustomerSavedService',
+  ProviderPinnedCustomer: 'ProviderPinnedCustomer',
+  ProviderArchivedBooking: 'ProviderArchivedBooking'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -416,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "refreshToken" | "providerProfile" | "nrcState" | "nrcTownship" | "providerDocument" | "category" | "providerCategoryChangeRequest" | "skill" | "service" | "serviceSkill" | "serviceCustomSkill" | "serviceArea" | "booking" | "chatRoom" | "message" | "review"
+    modelProps: "user" | "refreshToken" | "providerProfile" | "nrcState" | "nrcTownship" | "providerDocument" | "category" | "providerCategoryChangeRequest" | "skill" | "service" | "serviceSkill" | "serviceCustomSkill" | "serviceArea" | "booking" | "chatRoom" | "chatRoomReadState" | "message" | "review" | "customerSavedService" | "providerPinnedCustomer" | "providerArchivedBooking"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1530,6 +1534,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ChatRoomReadState: {
+      payload: Prisma.$ChatRoomReadStatePayload<ExtArgs>
+      fields: Prisma.ChatRoomReadStateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChatRoomReadStateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChatRoomReadStateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        findFirst: {
+          args: Prisma.ChatRoomReadStateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChatRoomReadStateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        findMany: {
+          args: Prisma.ChatRoomReadStateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>[]
+        }
+        create: {
+          args: Prisma.ChatRoomReadStateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        createMany: {
+          args: Prisma.ChatRoomReadStateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChatRoomReadStateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>[]
+        }
+        delete: {
+          args: Prisma.ChatRoomReadStateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        update: {
+          args: Prisma.ChatRoomReadStateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        deleteMany: {
+          args: Prisma.ChatRoomReadStateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChatRoomReadStateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChatRoomReadStateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>[]
+        }
+        upsert: {
+          args: Prisma.ChatRoomReadStateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatRoomReadStatePayload>
+        }
+        aggregate: {
+          args: Prisma.ChatRoomReadStateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChatRoomReadState>
+        }
+        groupBy: {
+          args: Prisma.ChatRoomReadStateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatRoomReadStateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChatRoomReadStateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatRoomReadStateCountAggregateOutputType> | number
+        }
+      }
+    }
     Message: {
       payload: Prisma.$MessagePayload<ExtArgs>
       fields: Prisma.MessageFieldRefs
@@ -1675,6 +1753,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ReviewCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ReviewCountAggregateOutputType> | number
+        }
+      }
+    }
+    CustomerSavedService: {
+      payload: Prisma.$CustomerSavedServicePayload<ExtArgs>
+      fields: Prisma.CustomerSavedServiceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CustomerSavedServiceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CustomerSavedServiceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        findFirst: {
+          args: Prisma.CustomerSavedServiceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CustomerSavedServiceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        findMany: {
+          args: Prisma.CustomerSavedServiceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>[]
+        }
+        create: {
+          args: Prisma.CustomerSavedServiceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        createMany: {
+          args: Prisma.CustomerSavedServiceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CustomerSavedServiceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>[]
+        }
+        delete: {
+          args: Prisma.CustomerSavedServiceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        update: {
+          args: Prisma.CustomerSavedServiceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        deleteMany: {
+          args: Prisma.CustomerSavedServiceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CustomerSavedServiceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CustomerSavedServiceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>[]
+        }
+        upsert: {
+          args: Prisma.CustomerSavedServiceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerSavedServicePayload>
+        }
+        aggregate: {
+          args: Prisma.CustomerSavedServiceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCustomerSavedService>
+        }
+        groupBy: {
+          args: Prisma.CustomerSavedServiceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerSavedServiceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CustomerSavedServiceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerSavedServiceCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProviderPinnedCustomer: {
+      payload: Prisma.$ProviderPinnedCustomerPayload<ExtArgs>
+      fields: Prisma.ProviderPinnedCustomerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProviderPinnedCustomerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProviderPinnedCustomerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        findFirst: {
+          args: Prisma.ProviderPinnedCustomerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProviderPinnedCustomerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        findMany: {
+          args: Prisma.ProviderPinnedCustomerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>[]
+        }
+        create: {
+          args: Prisma.ProviderPinnedCustomerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        createMany: {
+          args: Prisma.ProviderPinnedCustomerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProviderPinnedCustomerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>[]
+        }
+        delete: {
+          args: Prisma.ProviderPinnedCustomerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        update: {
+          args: Prisma.ProviderPinnedCustomerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProviderPinnedCustomerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProviderPinnedCustomerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProviderPinnedCustomerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProviderPinnedCustomerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderPinnedCustomerPayload>
+        }
+        aggregate: {
+          args: Prisma.ProviderPinnedCustomerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProviderPinnedCustomer>
+        }
+        groupBy: {
+          args: Prisma.ProviderPinnedCustomerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderPinnedCustomerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProviderPinnedCustomerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderPinnedCustomerCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProviderArchivedBooking: {
+      payload: Prisma.$ProviderArchivedBookingPayload<ExtArgs>
+      fields: Prisma.ProviderArchivedBookingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProviderArchivedBookingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProviderArchivedBookingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        findFirst: {
+          args: Prisma.ProviderArchivedBookingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProviderArchivedBookingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        findMany: {
+          args: Prisma.ProviderArchivedBookingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>[]
+        }
+        create: {
+          args: Prisma.ProviderArchivedBookingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        createMany: {
+          args: Prisma.ProviderArchivedBookingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProviderArchivedBookingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>[]
+        }
+        delete: {
+          args: Prisma.ProviderArchivedBookingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        update: {
+          args: Prisma.ProviderArchivedBookingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProviderArchivedBookingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProviderArchivedBookingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProviderArchivedBookingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProviderArchivedBookingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderArchivedBookingPayload>
+        }
+        aggregate: {
+          args: Prisma.ProviderArchivedBookingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProviderArchivedBooking>
+        }
+        groupBy: {
+          args: Prisma.ProviderArchivedBookingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderArchivedBookingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProviderArchivedBookingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderArchivedBookingCountAggregateOutputType> | number
         }
       }
     }
@@ -1924,6 +2224,17 @@ export const ChatRoomScalarFieldEnum = {
 export type ChatRoomScalarFieldEnum = (typeof ChatRoomScalarFieldEnum)[keyof typeof ChatRoomScalarFieldEnum]
 
 
+export const ChatRoomReadStateScalarFieldEnum = {
+  roomId: 'roomId',
+  userId: 'userId',
+  lastReadAt: 'lastReadAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ChatRoomReadStateScalarFieldEnum = (typeof ChatRoomReadStateScalarFieldEnum)[keyof typeof ChatRoomReadStateScalarFieldEnum]
+
+
 export const MessageScalarFieldEnum = {
   id: 'id',
   roomId: 'roomId',
@@ -1948,6 +2259,36 @@ export const ReviewScalarFieldEnum = {
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const CustomerSavedServiceScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  serviceId: 'serviceId',
+  createdAt: 'createdAt'
+} as const
+
+export type CustomerSavedServiceScalarFieldEnum = (typeof CustomerSavedServiceScalarFieldEnum)[keyof typeof CustomerSavedServiceScalarFieldEnum]
+
+
+export const ProviderPinnedCustomerScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  customerId: 'customerId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProviderPinnedCustomerScalarFieldEnum = (typeof ProviderPinnedCustomerScalarFieldEnum)[keyof typeof ProviderPinnedCustomerScalarFieldEnum]
+
+
+export const ProviderArchivedBookingScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  bookingId: 'bookingId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProviderArchivedBookingScalarFieldEnum = (typeof ProviderArchivedBookingScalarFieldEnum)[keyof typeof ProviderArchivedBookingScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2251,8 +2592,12 @@ export type GlobalOmitConfig = {
   serviceArea?: Prisma.ServiceAreaOmit
   booking?: Prisma.BookingOmit
   chatRoom?: Prisma.ChatRoomOmit
+  chatRoomReadState?: Prisma.ChatRoomReadStateOmit
   message?: Prisma.MessageOmit
   review?: Prisma.ReviewOmit
+  customerSavedService?: Prisma.CustomerSavedServiceOmit
+  providerPinnedCustomer?: Prisma.ProviderPinnedCustomerOmit
+  providerArchivedBooking?: Prisma.ProviderArchivedBookingOmit
 }
 
 /* Types for Logging */

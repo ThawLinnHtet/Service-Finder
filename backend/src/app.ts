@@ -14,10 +14,21 @@ import { bookingsRouter } from "./modules/bookings/route";
 import { providerCategoryChangeRequestsRouter } from "./modules/category-change-requests/provider-route";
 import { categoriesRouter } from "./modules/categories/route";
 import { chatRouter } from "./modules/chat/route";
+import {
+  customerDashboardRouter,
+  providerDashboardRouter,
+} from "./modules/dashboards/route";
 import { nrcRouter } from "./modules/nrc/route";
+import {
+  bookingReviewsRouter,
+  customerReviewsRouter,
+  providerReviewsRouter,
+  serviceReviewsRouter,
+} from "./modules/reviews/route";
 import { providersRouter } from "./modules/providers/route";
 import { publicServicesRouter } from "./modules/services/public-route";
 import { servicesRouter } from "./modules/services/route";
+import { usersRouter } from "./modules/users/route";
 
 export const app = express();
 
@@ -56,12 +67,19 @@ app.use("/api/auth", authRouter);
 app.use("/api/admin/providers", adminProvidersRouter);
 app.use("/api/admin/category-change-requests", adminCategoryChangeRequestsRouter);
 app.use("/api/bookings", bookingsRouter);
+app.use("/api/bookings", bookingReviewsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/chats", chatRouter);
+app.use("/api/customer/reviews", customerReviewsRouter);
+app.use("/api/customer", customerDashboardRouter);
 app.use("/api/nrc", nrcRouter);
 app.use("/api/services", publicServicesRouter);
+app.use("/api/services", serviceReviewsRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/provider", providersRouter);
+app.use("/api/provider", providerDashboardRouter);
 app.use("/api/provider/category-change-requests", providerCategoryChangeRequestsRouter);
+app.use("/api/provider/reviews", providerReviewsRouter);
 app.use("/api/provider/services", servicesRouter);
 
 app.use(notFoundHandler);

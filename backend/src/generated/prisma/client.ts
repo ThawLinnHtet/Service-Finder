@@ -117,6 +117,11 @@ export type Booking = Prisma.BookingModel
  */
 export type ChatRoom = Prisma.ChatRoomModel
 /**
+ * Model ChatRoomReadState
+ * 
+ */
+export type ChatRoomReadState = Prisma.ChatRoomReadStateModel
+/**
  * Model Message
  * 
  */
@@ -126,3 +131,18 @@ export type Message = Prisma.MessageModel
  * 
  */
 export type Review = Prisma.ReviewModel
+/**
+ * Model CustomerSavedService
+ * 
+ */
+export type CustomerSavedService = Prisma.CustomerSavedServiceModel
+/**
+ * Model ProviderPinnedCustomer
+ * 
+ */
+export type ProviderPinnedCustomer = Prisma.ProviderPinnedCustomerModel
+/**
+ * Model ProviderArchivedBooking
+ * 
+ */
+export type ProviderArchivedBooking = Prisma.ProviderArchivedBookingModel

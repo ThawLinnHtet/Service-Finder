@@ -10,11 +10,13 @@ import {
   getBookingController,
   listBookingsController,
   rejectBookingController,
+  rescheduleBookingController,
 } from "./controller";
 import {
   bookingIdParamSchema,
   createBookingSchema,
   listBookingsSchema,
+  rescheduleBookingSchema,
 } from "./validation";
 
 const router = Router();
@@ -69,6 +71,14 @@ router.patch(
   authorizeRoles("CUSTOMER", { message: "Only customers can cancel bookings" }),
   validateRequest(bookingIdParamSchema),
   asyncHandler(cancelBookingController),
+);
+
+router.patch(
+  "/:bookingId/reschedule",
+  requireAuth,
+  authorizeRoles("CUSTOMER", { message: "Only customers can reschedule bookings" }),
+  validateRequest(rescheduleBookingSchema),
+  asyncHandler(rescheduleBookingController),
 );
 
 router.patch(

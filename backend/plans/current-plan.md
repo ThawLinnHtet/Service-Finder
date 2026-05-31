@@ -174,14 +174,14 @@ This plan supersedes the original 2026-05-12 backend plan. The old provider-prof
 
 - Add provider service profile management endpoints.
 - Providers manage one current service profile for MVP.
-- Providers can edit skills/price/experience/service areas only after admin approval.
+- Providers can edit service profile fields (title, about/description, skills, price, experience, availability, and service areas) only after admin approval.
 - Providers edit existing service profile only; new provider-created service profiles are disabled in current MVP flow.
 - Enforce price range from 10,000 MMK to 1,000,000 MMK.
 - Enforce category and skill validity.
 - Enforce service areas belong to provider's detected city.
 - Use cursor pagination for provider service lists.
 - Enforce service area selection limit per service (`1` to `10`).
-- Enforce single-category consistency: provider service edits must stay within provider primary category.
+- Disallow direct category edits in provider service update; category/job changes must go through admin request workflow.
 - Provider-owned service endpoints (legacy service module retained during Option A transition):
   - `GET /api/provider/services`
   - `GET /api/provider/services/:serviceId`
@@ -232,19 +232,28 @@ This plan supersedes the original 2026-05-12 backend plan. The old provider-prof
 - Add booking lifecycle endpoints.
 - Booking must link to `serviceId`, customer, and provider.
 - Customers can book approved providers' active services only.
+- Booking creation must require scheduled date and time (`scheduledAt`).
 - Provider can accept or reject bookings for their own services.
+- Customers can reschedule accepted bookings with a new future `scheduledAt`.
 - Support statuses `PENDING`, `ACCEPTED`, `REJECTED`, `COMPLETED`, and `CANCELLED`.
 - Restrict status transitions by role.
-- Chat starts only after booking is accepted.
+- Chat room is created when booking is requested (`PENDING`) so customer and provider can discuss job details before acceptance.
 
 ---
 
 ## Phase 12: Chat
 
-- Add one chat room per accepted booking.
+- Add one chat room per booking request.
 - Store messages in DB.
 - Add Socket.IO real-time rooms by booking/chat ID.
 - Only booking customer and provider can access the booking chat.
+- Add chat inbox/list endpoint for customer and provider message tabs with cursor pagination and last-message summary.
+- Allow chat read access for all booking lifecycle statuses.
+- Allow message sending for `PENDING` and `ACCEPTED` bookings only.
+- Add typing indicator events for joined booking chat rooms.
+- Add online/offline presence events and presence lookup support for chat participant status badges.
+- Add unread message count in chat inbox response.
+- Add chat read-marker endpoint so opening a room can mark messages as read.
 
 ---
 
@@ -253,8 +262,48 @@ This plan supersedes the original 2026-05-12 backend plan. The old provider-prof
 - Allow customers to review completed bookings only.
 - Enforce one review per booking.
 - Cancelled and rejected bookings cannot be reviewed.
+- Keep review creation rating-focused for current MVP (star rating required, comment deferred for later phase).
 - Update provider/service rating aggregates as needed.
 - Track completed service count for filtering providers with no completed services yet.
+- Add customer review list endpoint so customers can view reviews they submitted.
+
+---
+
+## Phase 13.1: Customer/Provider Dashboard APIs
+
+- Add customer dashboard summary endpoint for top cards only (no large list payloads).
+- Customer dashboard summary response should include customer greeting data (`id`, `username`).
+- Add customer upcoming bookings list endpoint with cursor pagination and status filter (`ALL`, `ASSIGNED`, `CONFIRMED`, `CANCELLED`).
+- Add customer dashboard booking filter endpoint with `ALL`, `COMPLETED`, and `CANCELLED` views.
+- Add saved-service endpoints so customers can save/unsave services and list saved services.
+- Add provider dashboard endpoint for summary cards and active-now jobs.
+- Provider dashboard summary must include `totalJobs`, `reviewsBy`, and `rating` (`average`, `display`).
+- Provider dashboard summary response should include provider greeting data (`id`, `username`).
+- Add provider dashboard client filter endpoint with `ALL`, `ONGOING`, `COMPLETED`, `CANCELLED`, and `PINNED` views.
+- Use booking module list endpoint (`GET /api/bookings?status=PENDING`) as the single source for provider requested booking cards with cursor pagination.
+- Add provider active-now jobs endpoint for accepted bookings whose scheduled time has started.
+- Add provider pin/unpin customer endpoints and prioritize pinned customers in dashboard booking views.
+- Add provider history clear endpoint that archives provider-side historical bookings (completed/cancelled/rejected) from dashboard views.
+
+---
+
+## Phase 13.2: Customer And Provider Profile APIs
+
+- Add current-user profile endpoints for authenticated account reads and customer account edits.
+- Add `GET /api/users/me` for safe account/profile reads.
+- Add `PATCH /api/users/me` for customer/admin account edits (`username`, `email`, `phone`, and coordinate-based `location`).
+- Add `PATCH /api/users/me/password` for password changes with current-password verification and refresh-token revocation.
+- Add provider-specific profile endpoints:
+  - `GET /api/provider/profile`
+  - `PATCH /api/provider/profile`
+  - `PATCH /api/provider/profile/password`
+- Provider profile read response should include account data, location, provider status/rejection context, provider `about`, rating summary, current service profile summary, and verification document previews.
+- Provider profile updates may edit `username`, `email`, `phone`, `about`, and coordinate-based `location`.
+- Provider location updates must reverse-geocode coordinates through Mapbox.
+- If provider location city changes, require updated `serviceAreas` in the same request and validate those service areas against the new city.
+- Keep provider NRC fields and verification documents read-only after approval; rejected providers continue using the existing resubmit flow.
+- Keep category/job changes in the existing admin-reviewed category-change request workflow.
+- Keep service profile fields in the existing provider service endpoints.
 
 ---
 

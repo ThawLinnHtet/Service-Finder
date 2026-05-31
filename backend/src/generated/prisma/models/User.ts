@@ -292,6 +292,11 @@ export type UserWhereInput = {
   messages?: Prisma.MessageListRelationFilter
   reviewsGiven?: Prisma.ReviewListRelationFilter
   reviewsReceived?: Prisma.ReviewListRelationFilter
+  savedServices?: Prisma.CustomerSavedServiceListRelationFilter
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerListRelationFilter
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerListRelationFilter
+  archivedBookings?: Prisma.ProviderArchivedBookingListRelationFilter
+  chatRoomReadStates?: Prisma.ChatRoomReadStateListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -316,6 +321,11 @@ export type UserOrderByWithRelationInput = {
   messages?: Prisma.MessageOrderByRelationAggregateInput
   reviewsGiven?: Prisma.ReviewOrderByRelationAggregateInput
   reviewsReceived?: Prisma.ReviewOrderByRelationAggregateInput
+  savedServices?: Prisma.CustomerSavedServiceOrderByRelationAggregateInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerOrderByRelationAggregateInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerOrderByRelationAggregateInput
+  archivedBookings?: Prisma.ProviderArchivedBookingOrderByRelationAggregateInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -343,6 +353,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   messages?: Prisma.MessageListRelationFilter
   reviewsGiven?: Prisma.ReviewListRelationFilter
   reviewsReceived?: Prisma.ReviewListRelationFilter
+  savedServices?: Prisma.CustomerSavedServiceListRelationFilter
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerListRelationFilter
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerListRelationFilter
+  archivedBookings?: Prisma.ProviderArchivedBookingListRelationFilter
+  chatRoomReadStates?: Prisma.ChatRoomReadStateListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -407,6 +422,11 @@ export type UserCreateInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -431,6 +451,11 @@ export type UserUncheckedCreateInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -455,6 +480,11 @@ export type UserUpdateInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -479,6 +509,11 @@ export type UserUncheckedUpdateInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -686,6 +721,20 @@ export type UserUpdateOneRequiredWithoutBookingsAsProviderNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBookingsAsProviderInput, Prisma.UserUpdateWithoutBookingsAsProviderInput>, Prisma.UserUncheckedUpdateWithoutBookingsAsProviderInput>
 }
 
+export type UserCreateNestedOneWithoutChatRoomReadStatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedCreateWithoutChatRoomReadStatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatRoomReadStatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutChatRoomReadStatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedCreateWithoutChatRoomReadStatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatRoomReadStatesInput
+  upsert?: Prisma.UserUpsertWithoutChatRoomReadStatesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatRoomReadStatesInput, Prisma.UserUpdateWithoutChatRoomReadStatesInput>, Prisma.UserUncheckedUpdateWithoutChatRoomReadStatesInput>
+}
+
 export type UserCreateNestedOneWithoutMessagesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutMessagesInput, Prisma.UserUncheckedCreateWithoutMessagesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutMessagesInput
@@ -728,6 +777,62 @@ export type UserUpdateOneRequiredWithoutReviewsGivenNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewsGivenInput, Prisma.UserUpdateWithoutReviewsGivenInput>, Prisma.UserUncheckedUpdateWithoutReviewsGivenInput>
 }
 
+export type UserCreateNestedOneWithoutSavedServicesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSavedServicesInput, Prisma.UserUncheckedCreateWithoutSavedServicesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSavedServicesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSavedServicesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSavedServicesInput, Prisma.UserUncheckedCreateWithoutSavedServicesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSavedServicesInput
+  upsert?: Prisma.UserUpsertWithoutSavedServicesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSavedServicesInput, Prisma.UserUpdateWithoutSavedServicesInput>, Prisma.UserUncheckedUpdateWithoutSavedServicesInput>
+}
+
+export type UserCreateNestedOneWithoutPinnedCustomersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPinnedCustomersInput, Prisma.UserUncheckedCreateWithoutPinnedCustomersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPinnedCustomersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutPinnedByProvidersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPinnedByProvidersInput, Prisma.UserUncheckedCreateWithoutPinnedByProvidersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPinnedByProvidersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPinnedCustomersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPinnedCustomersInput, Prisma.UserUncheckedCreateWithoutPinnedCustomersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPinnedCustomersInput
+  upsert?: Prisma.UserUpsertWithoutPinnedCustomersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPinnedCustomersInput, Prisma.UserUpdateWithoutPinnedCustomersInput>, Prisma.UserUncheckedUpdateWithoutPinnedCustomersInput>
+}
+
+export type UserUpdateOneRequiredWithoutPinnedByProvidersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPinnedByProvidersInput, Prisma.UserUncheckedCreateWithoutPinnedByProvidersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPinnedByProvidersInput
+  upsert?: Prisma.UserUpsertWithoutPinnedByProvidersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPinnedByProvidersInput, Prisma.UserUpdateWithoutPinnedByProvidersInput>, Prisma.UserUncheckedUpdateWithoutPinnedByProvidersInput>
+}
+
+export type UserCreateNestedOneWithoutArchivedBookingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutArchivedBookingsInput, Prisma.UserUncheckedCreateWithoutArchivedBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutArchivedBookingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutArchivedBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutArchivedBookingsInput, Prisma.UserUncheckedCreateWithoutArchivedBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutArchivedBookingsInput
+  upsert?: Prisma.UserUpsertWithoutArchivedBookingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutArchivedBookingsInput, Prisma.UserUpdateWithoutArchivedBookingsInput>, Prisma.UserUncheckedUpdateWithoutArchivedBookingsInput>
+}
+
 export type UserCreateWithoutRefreshTokensInput = {
   id?: string
   username: string
@@ -749,6 +854,11 @@ export type UserCreateWithoutRefreshTokensInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -772,6 +882,11 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -811,6 +926,11 @@ export type UserUpdateWithoutRefreshTokensInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -834,6 +954,11 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProviderProfileInput = {
@@ -857,6 +982,11 @@ export type UserCreateWithoutProviderProfileInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProviderProfileInput = {
@@ -880,6 +1010,11 @@ export type UserUncheckedCreateWithoutProviderProfileInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProviderProfileInput = {
@@ -919,6 +1054,11 @@ export type UserUpdateWithoutProviderProfileInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProviderProfileInput = {
@@ -942,6 +1082,11 @@ export type UserUncheckedUpdateWithoutProviderProfileInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProvidedServicesInput = {
@@ -965,6 +1110,11 @@ export type UserCreateWithoutProvidedServicesInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProvidedServicesInput = {
@@ -988,6 +1138,11 @@ export type UserUncheckedCreateWithoutProvidedServicesInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProvidedServicesInput = {
@@ -1027,6 +1182,11 @@ export type UserUpdateWithoutProvidedServicesInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProvidedServicesInput = {
@@ -1050,6 +1210,11 @@ export type UserUncheckedUpdateWithoutProvidedServicesInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBookingsAsCustomerInput = {
@@ -1073,6 +1238,11 @@ export type UserCreateWithoutBookingsAsCustomerInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBookingsAsCustomerInput = {
@@ -1096,6 +1266,11 @@ export type UserUncheckedCreateWithoutBookingsAsCustomerInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBookingsAsCustomerInput = {
@@ -1124,6 +1299,11 @@ export type UserCreateWithoutBookingsAsProviderInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBookingsAsProviderInput = {
@@ -1147,6 +1327,11 @@ export type UserUncheckedCreateWithoutBookingsAsProviderInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBookingsAsProviderInput = {
@@ -1186,6 +1371,11 @@ export type UserUpdateWithoutBookingsAsCustomerInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookingsAsCustomerInput = {
@@ -1209,6 +1399,11 @@ export type UserUncheckedUpdateWithoutBookingsAsCustomerInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutBookingsAsProviderInput = {
@@ -1243,6 +1438,11 @@ export type UserUpdateWithoutBookingsAsProviderInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookingsAsProviderInput = {
@@ -1266,6 +1466,139 @@ export type UserUncheckedUpdateWithoutBookingsAsProviderInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutChatRoomReadStatesInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+}
+
+export type UserUncheckedCreateWithoutChatRoomReadStatesInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+}
+
+export type UserCreateOrConnectWithoutChatRoomReadStatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedCreateWithoutChatRoomReadStatesInput>
+}
+
+export type UserUpsertWithoutChatRoomReadStatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedUpdateWithoutChatRoomReadStatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedCreateWithoutChatRoomReadStatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutChatRoomReadStatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutChatRoomReadStatesInput, Prisma.UserUncheckedUpdateWithoutChatRoomReadStatesInput>
+}
+
+export type UserUpdateWithoutChatRoomReadStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+}
+
+export type UserUncheckedUpdateWithoutChatRoomReadStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUncheckedUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
 }
 
 export type UserCreateWithoutMessagesInput = {
@@ -1289,6 +1622,11 @@ export type UserCreateWithoutMessagesInput = {
   bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
@@ -1312,6 +1650,11 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesInput = {
@@ -1351,6 +1694,11 @@ export type UserUpdateWithoutMessagesInput = {
   bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -1374,6 +1722,11 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewsReceivedInput = {
@@ -1397,6 +1750,11 @@ export type UserCreateWithoutReviewsReceivedInput = {
   bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsReceivedInput = {
@@ -1420,6 +1778,11 @@ export type UserUncheckedCreateWithoutReviewsReceivedInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsReceivedInput = {
@@ -1448,6 +1811,11 @@ export type UserCreateWithoutReviewsGivenInput = {
   bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewsGivenInput = {
@@ -1471,6 +1839,11 @@ export type UserUncheckedCreateWithoutReviewsGivenInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewsGivenInput = {
@@ -1510,6 +1883,11 @@ export type UserUpdateWithoutReviewsReceivedInput = {
   bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsReceivedInput = {
@@ -1533,6 +1911,11 @@ export type UserUncheckedUpdateWithoutReviewsReceivedInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReviewsGivenInput = {
@@ -1567,6 +1950,11 @@ export type UserUpdateWithoutReviewsGivenInput = {
   bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsGivenInput = {
@@ -1590,6 +1978,523 @@ export type UserUncheckedUpdateWithoutReviewsGivenInput = {
   bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSavedServicesInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSavedServicesInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSavedServicesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSavedServicesInput, Prisma.UserUncheckedCreateWithoutSavedServicesInput>
+}
+
+export type UserUpsertWithoutSavedServicesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSavedServicesInput, Prisma.UserUncheckedUpdateWithoutSavedServicesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSavedServicesInput, Prisma.UserUncheckedCreateWithoutSavedServicesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSavedServicesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSavedServicesInput, Prisma.UserUncheckedUpdateWithoutSavedServicesInput>
+}
+
+export type UserUpdateWithoutSavedServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSavedServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUncheckedUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPinnedCustomersInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPinnedCustomersInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPinnedCustomersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPinnedCustomersInput, Prisma.UserUncheckedCreateWithoutPinnedCustomersInput>
+}
+
+export type UserCreateWithoutPinnedByProvidersInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  archivedBookings?: Prisma.ProviderArchivedBookingCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPinnedByProvidersInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedCreateNestedManyWithoutProviderInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPinnedByProvidersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPinnedByProvidersInput, Prisma.UserUncheckedCreateWithoutPinnedByProvidersInput>
+}
+
+export type UserUpsertWithoutPinnedCustomersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPinnedCustomersInput, Prisma.UserUncheckedUpdateWithoutPinnedCustomersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPinnedCustomersInput, Prisma.UserUncheckedCreateWithoutPinnedCustomersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPinnedCustomersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPinnedCustomersInput, Prisma.UserUncheckedUpdateWithoutPinnedCustomersInput>
+}
+
+export type UserUpdateWithoutPinnedCustomersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPinnedCustomersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUncheckedUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutPinnedByProvidersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPinnedByProvidersInput, Prisma.UserUncheckedUpdateWithoutPinnedByProvidersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPinnedByProvidersInput, Prisma.UserUncheckedCreateWithoutPinnedByProvidersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPinnedByProvidersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPinnedByProvidersInput, Prisma.UserUncheckedUpdateWithoutPinnedByProvidersInput>
+}
+
+export type UserUpdateWithoutPinnedByProvidersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPinnedByProvidersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUncheckedUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  archivedBookings?: Prisma.ProviderArchivedBookingUncheckedUpdateManyWithoutProviderNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutArchivedBookingsInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerCreateNestedManyWithoutCustomerInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutArchivedBookingsInput = {
+  id?: string
+  username: string
+  email: string
+  phone: string
+  passwordHash: string
+  role: $Enums.UserRole
+  city: string
+  township: string
+  address?: string | null
+  latitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  providedServices?: Prisma.ServiceUncheckedCreateNestedManyWithoutProviderInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedCreateNestedManyWithoutCustomerInput
+  bookingsAsProvider?: Prisma.BookingUncheckedCreateNestedManyWithoutProviderInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutCustomerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedCreateNestedManyWithoutCustomerInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutProviderInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedCreateNestedManyWithoutCustomerInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutArchivedBookingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutArchivedBookingsInput, Prisma.UserUncheckedCreateWithoutArchivedBookingsInput>
+}
+
+export type UserUpsertWithoutArchivedBookingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutArchivedBookingsInput, Prisma.UserUncheckedUpdateWithoutArchivedBookingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutArchivedBookingsInput, Prisma.UserUncheckedCreateWithoutArchivedBookingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutArchivedBookingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutArchivedBookingsInput, Prisma.UserUncheckedUpdateWithoutArchivedBookingsInput>
+}
+
+export type UserUpdateWithoutArchivedBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUpdateManyWithoutCustomerNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutArchivedBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  township?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  longitude?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfile?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  providedServices?: Prisma.ServiceUncheckedUpdateManyWithoutProviderNestedInput
+  bookingsAsCustomer?: Prisma.BookingUncheckedUpdateManyWithoutCustomerNestedInput
+  bookingsAsProvider?: Prisma.BookingUncheckedUpdateManyWithoutProviderNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutProviderNestedInput
+  savedServices?: Prisma.CustomerSavedServiceUncheckedUpdateManyWithoutCustomerNestedInput
+  pinnedCustomers?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutProviderNestedInput
+  pinnedByProviders?: Prisma.ProviderPinnedCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+  chatRoomReadStates?: Prisma.ChatRoomReadStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1605,6 +2510,11 @@ export type UserCountOutputType = {
   messages: number
   reviewsGiven: number
   reviewsReceived: number
+  savedServices: number
+  pinnedCustomers: number
+  pinnedByProviders: number
+  archivedBookings: number
+  chatRoomReadStates: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1615,6 +2525,11 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   messages?: boolean | UserCountOutputTypeCountMessagesArgs
   reviewsGiven?: boolean | UserCountOutputTypeCountReviewsGivenArgs
   reviewsReceived?: boolean | UserCountOutputTypeCountReviewsReceivedArgs
+  savedServices?: boolean | UserCountOutputTypeCountSavedServicesArgs
+  pinnedCustomers?: boolean | UserCountOutputTypeCountPinnedCustomersArgs
+  pinnedByProviders?: boolean | UserCountOutputTypeCountPinnedByProvidersArgs
+  archivedBookings?: boolean | UserCountOutputTypeCountArchivedBookingsArgs
+  chatRoomReadStates?: boolean | UserCountOutputTypeCountChatRoomReadStatesArgs
 }
 
 /**
@@ -1676,6 +2591,41 @@ export type UserCountOutputTypeCountReviewsReceivedArgs<ExtArgs extends runtime.
   where?: Prisma.ReviewWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSavedServicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CustomerSavedServiceWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPinnedCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProviderPinnedCustomerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPinnedByProvidersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProviderPinnedCustomerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountArchivedBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProviderArchivedBookingWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountChatRoomReadStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatRoomReadStateWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1699,6 +2649,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   reviewsGiven?: boolean | Prisma.User$reviewsGivenArgs<ExtArgs>
   reviewsReceived?: boolean | Prisma.User$reviewsReceivedArgs<ExtArgs>
+  savedServices?: boolean | Prisma.User$savedServicesArgs<ExtArgs>
+  pinnedCustomers?: boolean | Prisma.User$pinnedCustomersArgs<ExtArgs>
+  pinnedByProviders?: boolean | Prisma.User$pinnedByProvidersArgs<ExtArgs>
+  archivedBookings?: boolean | Prisma.User$archivedBookingsArgs<ExtArgs>
+  chatRoomReadStates?: boolean | Prisma.User$chatRoomReadStatesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1760,6 +2715,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   reviewsGiven?: boolean | Prisma.User$reviewsGivenArgs<ExtArgs>
   reviewsReceived?: boolean | Prisma.User$reviewsReceivedArgs<ExtArgs>
+  savedServices?: boolean | Prisma.User$savedServicesArgs<ExtArgs>
+  pinnedCustomers?: boolean | Prisma.User$pinnedCustomersArgs<ExtArgs>
+  pinnedByProviders?: boolean | Prisma.User$pinnedByProvidersArgs<ExtArgs>
+  archivedBookings?: boolean | Prisma.User$archivedBookingsArgs<ExtArgs>
+  chatRoomReadStates?: boolean | Prisma.User$chatRoomReadStatesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1776,6 +2736,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     messages: Prisma.$MessagePayload<ExtArgs>[]
     reviewsGiven: Prisma.$ReviewPayload<ExtArgs>[]
     reviewsReceived: Prisma.$ReviewPayload<ExtArgs>[]
+    savedServices: Prisma.$CustomerSavedServicePayload<ExtArgs>[]
+    pinnedCustomers: Prisma.$ProviderPinnedCustomerPayload<ExtArgs>[]
+    pinnedByProviders: Prisma.$ProviderPinnedCustomerPayload<ExtArgs>[]
+    archivedBookings: Prisma.$ProviderArchivedBookingPayload<ExtArgs>[]
+    chatRoomReadStates: Prisma.$ChatRoomReadStatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2193,6 +3158,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewsGiven<T extends Prisma.User$reviewsGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewsReceived<T extends Prisma.User$reviewsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedServices<T extends Prisma.User$savedServicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$savedServicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerSavedServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pinnedCustomers<T extends Prisma.User$pinnedCustomersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pinnedCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderPinnedCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pinnedByProviders<T extends Prisma.User$pinnedByProvidersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pinnedByProvidersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderPinnedCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  archivedBookings<T extends Prisma.User$archivedBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$archivedBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderArchivedBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  chatRoomReadStates<T extends Prisma.User$chatRoomReadStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatRoomReadStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatRoomReadStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2812,6 +3782,126 @@ export type User$reviewsReceivedArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * User.savedServices
+ */
+export type User$savedServicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CustomerSavedService
+   */
+  select?: Prisma.CustomerSavedServiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CustomerSavedService
+   */
+  omit?: Prisma.CustomerSavedServiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerSavedServiceInclude<ExtArgs> | null
+  where?: Prisma.CustomerSavedServiceWhereInput
+  orderBy?: Prisma.CustomerSavedServiceOrderByWithRelationInput | Prisma.CustomerSavedServiceOrderByWithRelationInput[]
+  cursor?: Prisma.CustomerSavedServiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CustomerSavedServiceScalarFieldEnum | Prisma.CustomerSavedServiceScalarFieldEnum[]
+}
+
+/**
+ * User.pinnedCustomers
+ */
+export type User$pinnedCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProviderPinnedCustomer
+   */
+  select?: Prisma.ProviderPinnedCustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProviderPinnedCustomer
+   */
+  omit?: Prisma.ProviderPinnedCustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderPinnedCustomerInclude<ExtArgs> | null
+  where?: Prisma.ProviderPinnedCustomerWhereInput
+  orderBy?: Prisma.ProviderPinnedCustomerOrderByWithRelationInput | Prisma.ProviderPinnedCustomerOrderByWithRelationInput[]
+  cursor?: Prisma.ProviderPinnedCustomerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProviderPinnedCustomerScalarFieldEnum | Prisma.ProviderPinnedCustomerScalarFieldEnum[]
+}
+
+/**
+ * User.pinnedByProviders
+ */
+export type User$pinnedByProvidersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProviderPinnedCustomer
+   */
+  select?: Prisma.ProviderPinnedCustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProviderPinnedCustomer
+   */
+  omit?: Prisma.ProviderPinnedCustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderPinnedCustomerInclude<ExtArgs> | null
+  where?: Prisma.ProviderPinnedCustomerWhereInput
+  orderBy?: Prisma.ProviderPinnedCustomerOrderByWithRelationInput | Prisma.ProviderPinnedCustomerOrderByWithRelationInput[]
+  cursor?: Prisma.ProviderPinnedCustomerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProviderPinnedCustomerScalarFieldEnum | Prisma.ProviderPinnedCustomerScalarFieldEnum[]
+}
+
+/**
+ * User.archivedBookings
+ */
+export type User$archivedBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProviderArchivedBooking
+   */
+  select?: Prisma.ProviderArchivedBookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProviderArchivedBooking
+   */
+  omit?: Prisma.ProviderArchivedBookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderArchivedBookingInclude<ExtArgs> | null
+  where?: Prisma.ProviderArchivedBookingWhereInput
+  orderBy?: Prisma.ProviderArchivedBookingOrderByWithRelationInput | Prisma.ProviderArchivedBookingOrderByWithRelationInput[]
+  cursor?: Prisma.ProviderArchivedBookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProviderArchivedBookingScalarFieldEnum | Prisma.ProviderArchivedBookingScalarFieldEnum[]
+}
+
+/**
+ * User.chatRoomReadStates
+ */
+export type User$chatRoomReadStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChatRoomReadState
+   */
+  select?: Prisma.ChatRoomReadStateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChatRoomReadState
+   */
+  omit?: Prisma.ChatRoomReadStateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatRoomReadStateInclude<ExtArgs> | null
+  where?: Prisma.ChatRoomReadStateWhereInput
+  orderBy?: Prisma.ChatRoomReadStateOrderByWithRelationInput | Prisma.ChatRoomReadStateOrderByWithRelationInput[]
+  cursor?: Prisma.ChatRoomReadStateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatRoomReadStateScalarFieldEnum | Prisma.ChatRoomReadStateScalarFieldEnum[]
 }
 
 /**

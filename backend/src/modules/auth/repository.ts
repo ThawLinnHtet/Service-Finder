@@ -17,14 +17,6 @@ type ProviderRegistrationAssets = {
   selfie: UploadedImage;
 };
 
-export const findUserByEmailOrPhone = (emailOrPhone: string) => {
-  return prisma.user.findFirst({
-    where: {
-      OR: [{ email: emailOrPhone.toLowerCase() }, { phone: emailOrPhone }],
-    },
-  });
-};
-
 export const findUserByEmail = (email: string) => {
   return prisma.user.findUnique({
     where: {

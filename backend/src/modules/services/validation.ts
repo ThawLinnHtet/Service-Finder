@@ -199,7 +199,6 @@ export const updateProviderServiceSchema = z.object({
     .strict(),
   body: z
     .object({
-      categoryId: serviceContentSchema.categoryId.optional(),
       title: serviceContentSchema.title.optional(),
       description: serviceContentSchema.description.optional(),
       price: serviceContentSchema.price.optional(),

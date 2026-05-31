@@ -145,11 +145,12 @@ export const registerProviderSchema = z.object({
 export const loginSchema = z.object({
   body: z
     .object({
-      emailOrPhone: z
-        .string({ error: "Email or phone is required" })
+      email: z
+        .string({ error: "Email is required" })
         .trim()
-        .min(1, "Email or phone is required")
-        .max(254, "Email or phone must be less than 254 characters"),
+        .email("Please enter a valid email address")
+        .max(254, "Email must be less than 254 characters")
+        .toLowerCase(),
       password: z
         .string({ error: "Password is required" })
         .min(1, "Password is required")

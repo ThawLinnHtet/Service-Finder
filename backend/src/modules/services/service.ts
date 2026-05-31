@@ -448,15 +448,6 @@ export const updateService = async (
   const hasSkillPatch =
     input.predefinedSkillIds !== undefined || input.customSkills !== undefined;
 
-  if (input.categoryId && !hasSkillPatch) {
-    throw new ValidationError([
-      {
-        field: "predefinedSkillIds",
-        message: "Update service skills when changing category",
-      },
-    ]);
-  }
-
   const normalizedPredefinedSkillIds = hasSkillPatch
     ? normalizeStringList(input.predefinedSkillIds ?? [])
     : undefined;
@@ -468,32 +459,11 @@ export const updateService = async (
     assertSkillSelection(normalizedPredefinedSkillIds, normalizedCustomSkills);
   }
 
-  const nextCategoryId = input.categoryId ?? existingService.categoryId;
-
-  if (input.categoryId) {
-    const constraints = await getProviderServiceConstraints(provider.userId);
-    const providerPrimaryCategoryId =
-      provider.primaryCategoryId ?? constraints.primaryCategoryId;
-
-    if (
-      providerPrimaryCategoryId &&
-      input.categoryId !== providerPrimaryCategoryId
-    ) {
-      throw new ValidationError([
-        {
-          field: "categoryId",
-          message: "Service category must match provider primary category",
-        },
-      ]);
-    }
-  }
-
-  if (input.categoryId) {
-    await assertCategoryExists(input.categoryId);
-  }
-
   if (normalizedPredefinedSkillIds) {
-    await assertPredefinedSkillsMatchCategory(normalizedPredefinedSkillIds, nextCategoryId);
+    await assertPredefinedSkillsMatchCategory(
+      normalizedPredefinedSkillIds,
+      existingService.categoryId,
+    );
   }
 
   const normalizedServiceAreas = input.serviceAreas
@@ -507,7 +477,6 @@ export const updateService = async (
     serviceId,
     city: provider.city,
     data: {
-      categoryId: input.categoryId,
       title: input.title,
       description: input.description,
       price: input.price,

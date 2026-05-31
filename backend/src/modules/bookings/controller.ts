@@ -8,8 +8,13 @@ import {
   getBookingById,
   listBookings,
   rejectBooking,
+  rescheduleBooking,
 } from "./service";
-import type { CreateBookingInput, ListBookingsQuery } from "./validation";
+import type {
+  CreateBookingInput,
+  ListBookingsQuery,
+  RescheduleBookingInput,
+} from "./validation";
 
 const getAuthContext = (req: Request): { userId: string; role: string } => {
   const auth = req.auth;
@@ -102,6 +107,25 @@ export const completeBookingController = async (req: Request, res: Response): Pr
   res.status(200).json({
     success: true,
     message: "Booking completed successfully",
+    data: booking,
+  });
+};
+
+export const rescheduleBookingController = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const { userId } = getAuthContext(req);
+  const { bookingId } = req.params as { bookingId: string };
+  const booking = await rescheduleBooking(
+    userId,
+    bookingId,
+    req.body as RescheduleBookingInput,
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Booking rescheduled successfully",
     data: booking,
   });
 };

@@ -46,12 +46,31 @@ This file defines all business logic for the Local Services Marketplace.
 
 ---
 
+## Provider Dashboard Rules
+
+-Show customer requested booking lists
+-Can filter customer or client by completed with default descending
+-Can filter customer or client by cancelled booking with default descending
+-Can filter customer or client by accepted booking with default descending
+-Can filter customer or clinet by all of above
+-Can make pinned customer and show them more priority
+-Can delete all of customer or client history if need.
+-Show active now in progress job
+
+It mean:
+-for example , if provider have work today , it wil automatically show when it's time , if it takes 5 hours , it will be 5 hours
+-not for only one if he/she have 3 works or jobs in today, 3 for these
+
+---
+
 ## Customer Rules
 
 - Can search providers without restriction
 - Can only review completed bookings
 - Can book multiple providers
-- Can chat with provider who accepted the booking
+- Need to provide Date and Time to book for provider.
+- Can chat with provider who you made the booking
+- Can reschedule with provider who accepted the booking
 
 ---
 
@@ -69,6 +88,7 @@ This file defines all business logic for the Local Services Marketplace.
 
 ### Rules
 
+- Provide Date and Time to book
 - Provider must accept booking before chat starts
 - One booking = one chat room
 - Only completed bookings can be reviewed
@@ -167,5 +187,6 @@ Admin must:
 - Messages stored in DB
 - Real-time via Socket.IO
 - Include timestamps
+- Can search with name
 
 ---

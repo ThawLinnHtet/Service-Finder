@@ -11,10 +11,15 @@ import {
   findBookingByIdForActor,
   findServiceForBookingById,
   listBookingsForActor,
+  updateBookingScheduledAtById,
   updateBookingStatusById,
   type BookingListCursor,
 } from "./repository";
-import type { CreateBookingInput, ListBookingsQuery } from "./validation";
+import type {
+  CreateBookingInput,
+  ListBookingsQuery,
+  RescheduleBookingInput,
+} from "./validation";
 
 type BookingRecord = NonNullable<Awaited<ReturnType<typeof findBookingByIdForActor>>>;
 
@@ -93,11 +98,7 @@ const encodeListCursor = (booking: { id: string; createdAt: Date }): string => {
   ).toString("base64url");
 };
 
-const parseOptionalScheduledAt = (scheduledAt: string | undefined): Date | undefined => {
-  if (!scheduledAt) {
-    return undefined;
-  }
-
+const parseRequiredScheduledAt = (scheduledAt: string): Date => {
   const parsedDate = new Date(scheduledAt);
 
   if (Number.isNaN(parsedDate.getTime())) {
@@ -162,9 +163,9 @@ export const createBooking = async (customerUserId: string, input: CreateBooking
     throw new BadRequestError("Service is not available for booking");
   }
 
-  const scheduledAt = parseOptionalScheduledAt(input.scheduledAt);
+  const scheduledAt = parseRequiredScheduledAt(input.scheduledAt);
 
-  if (scheduledAt && scheduledAt.getTime() <= Date.now()) {
+  if (scheduledAt.getTime() <= Date.now()) {
     throw new ValidationError([
       {
         field: "scheduledAt",
@@ -180,6 +181,8 @@ export const createBooking = async (customerUserId: string, input: CreateBooking
     note: input.note,
     scheduledAt,
   });
+
+  await ensureChatRoomForBooking(booking.id);
 
   return toBookingResponse(booking);
 };
@@ -232,7 +235,6 @@ export const acceptBooking = async (providerUserId: string, bookingId: string) =
   );
 
   const updated = await updateBookingStatusById(bookingId, "ACCEPTED", null);
-  await ensureChatRoomForBooking(bookingId);
   return toBookingResponse(updated);
 };
 
@@ -284,5 +286,37 @@ export const completeBooking = async (providerUserId: string, bookingId: string)
   );
 
   const updated = await updateBookingStatusById(bookingId, "COMPLETED", new Date());
+  return toBookingResponse(updated);
+};
+
+export const rescheduleBooking = async (
+  customerUserId: string,
+  bookingId: string,
+  input: RescheduleBookingInput,
+) => {
+  const booking = await getBookingForActorOrThrow(bookingId, customerUserId);
+
+  if (booking.customerId !== customerUserId) {
+    throw new ForbiddenError("You can only reschedule your own bookings");
+  }
+
+  assertBookingLifecycleStatus(
+    booking.status,
+    ["ACCEPTED"],
+    "Only accepted bookings can be rescheduled",
+  );
+
+  const scheduledAt = parseRequiredScheduledAt(input.scheduledAt);
+
+  if (scheduledAt.getTime() <= Date.now()) {
+    throw new ValidationError([
+      {
+        field: "scheduledAt",
+        message: "Scheduled date must be in the future",
+      },
+    ]);
+  }
+
+  const updated = await updateBookingScheduledAtById(bookingId, scheduledAt);
   return toBookingResponse(updated);
 };

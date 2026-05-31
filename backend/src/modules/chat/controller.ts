@@ -2,12 +2,31 @@ import type { Request, Response } from "express";
 import {
   getChatRoomByBooking,
   getChatRoomChannel,
+  listChatRooms,
   listChatMessages,
+  markChatRoomAsRead,
   resolveChatActorFromAuth,
   sendChatMessage,
 } from "./service";
-import { getChatIo } from "./socket";
-import type { ListChatMessagesQuery, SendChatMessageInput } from "./validation";
+import { getChatIo, getChatUsersPresence } from "./socket";
+import type {
+  ListChatMessagesQuery,
+  ListChatPresenceQuery,
+  ListChatRoomsQuery,
+  SendChatMessageInput,
+} from "./validation";
+
+export const listChatRoomsController = async (req: Request, res: Response): Promise<void> => {
+  const actor = resolveChatActorFromAuth(req.auth);
+  const query = req.validated?.query as ListChatRoomsQuery;
+  const result = await listChatRooms(actor, query);
+
+  res.status(200).json({
+    success: true,
+    data: result.data,
+    meta: result.meta,
+  });
+};
 
 export const getChatRoomController = async (req: Request, res: Response): Promise<void> => {
   const actor = resolveChatActorFromAuth(req.auth);
@@ -17,6 +36,16 @@ export const getChatRoomController = async (req: Request, res: Response): Promis
   res.status(200).json({
     success: true,
     data: room,
+  });
+};
+
+export const getChatPresenceController = async (req: Request, res: Response): Promise<void> => {
+  const query = req.validated?.query as ListChatPresenceQuery;
+  const data = getChatUsersPresence(query.userIds);
+
+  res.status(200).json({
+    success: true,
+    data,
   });
 };
 
@@ -54,5 +83,20 @@ export const sendChatMessageController = async (
     success: true,
     message: "Message sent successfully",
     data: result.message,
+  });
+};
+
+export const markChatRoomReadController = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const actor = resolveChatActorFromAuth(req.auth);
+  const { bookingId } = req.params as { bookingId: string };
+  const result = await markChatRoomAsRead(actor, bookingId);
+
+  res.status(200).json({
+    success: true,
+    message: "Chat marked as read",
+    data: result,
   });
 };

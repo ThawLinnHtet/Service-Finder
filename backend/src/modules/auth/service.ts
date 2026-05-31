@@ -34,7 +34,6 @@ import {
   findRefreshTokenByHash,
   findUserAuthById,
   findUsersByEmailOrPhone,
-  findUserByEmailOrPhone,
   rotateRefreshToken,
   registerProviderWithFirstService,
 } from "./repository";
@@ -52,7 +51,7 @@ import type {
 
 const PASSWORD_SALT_ROUNDS = 12;
 
-type UserRecord = Awaited<ReturnType<typeof findUserByEmailOrPhone>>;
+type UserRecord = Awaited<ReturnType<typeof findUserByEmail>>;
 type CreatedCustomerRecord = Awaited<ReturnType<typeof createCustomer>>;
 type CreatedProviderRecord = Awaited<ReturnType<typeof registerProviderWithFirstService>>;
 
@@ -215,7 +214,7 @@ export const registerProvider = async (
 };
 
 export const login = async (input: LoginInput): Promise<AuthResponse> => {
-  const user = await findUserByEmailOrPhone(input.emailOrPhone);
+  const user = await findUserByEmail(input.email);
 
   if (!user) {
     throw new UnauthorizedError("Invalid login credentials");
