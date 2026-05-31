@@ -1,0 +1,806 @@
+.main {
+  padding: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 0;
+  }
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .leftColumn {
+    grid-column: span 7;
+  }
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .rightColumn {
+    grid-column: span 5;
+  }
+}
+
+.storySection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.storyHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.storyTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.editBtn {
+  color: #9ca3af;
+  transition: color 0.2s;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn:hover {
+  color: #7b68d3;
+}
+
+.storyText {
+  color: #9ca3af;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.readMoreBtn {
+  color: #d1d5db;
+  font-weight: 700;
+  margin-left: 0.25rem;
+  transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.readMoreBtn:hover {
+  color: #9ca3af;
+}
+
+.overviewSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.75rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.fieldEditBtn {
+  color: #9ca3af;
+  padding: 0.25rem;
+  transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fieldEditBtn:hover {
+  color: #7b68d3;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  background: #f0f0f0;
+  color: #4b5563;
+  font-size: 0.875rem;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px rgba(123, 104, 211, 0.2);
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  padding: 0.25rem;
+  transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordToggle:hover {
+  color: #6b7280;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.skillTag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #d9d9d9;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #4b5563;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.skillRemove {
+  color: #6b7280;
+  transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.skillRemove:hover {
+  color: #ef4444;
+}
+
+.addSkillRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addSkillInput {
+  border: 2px dashed #d1d5db;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #9ca3af;
+  background: transparent;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.addSkillInput::placeholder {
+  color: #9ca3af;
+}
+
+.addSkillInput:focus {
+  border-color: #7b68d3;
+  color: #7b68d3;
+}
+
+.addSkillBtn {
+  color: #7b68d3;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.addSkillBtn:hover {
+  border-color: #7b68d3;
+  background: #f5f3ff;
+}
+
+.profileCard {
+  background: #a594f9;
+  border-radius: 2.5rem;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.profileCardContent {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+}
+
+.profileAvatar {
+  width: 8rem;
+  height: 8rem;
+  background: white;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.profileAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profileName {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profileProfession {
+  font-size: 1.25rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.profileDivider {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0.5rem 0;
+}
+
+.profilePrice {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.profileCardDecoration {
+  position: absolute;
+  bottom: -2.5rem;
+  right: -2.5rem;
+  width: 10rem;
+  height: 10rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.feesCard {
+  background: #8872e9;
+  border-radius: 2.5rem;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.feesContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feesIcon {
+  width: 5rem;
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.feesIcon svg {
+  opacity: 0.4;
+}
+
+.feesText {
+  padding-top: 0.5rem;
+}
+
+.feesTitle {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.feesSubtitle {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.feesBtn {
+  width: 100%;
+  background: white;
+  color: #8872e9;
+  padding: 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 900;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+
+.feesBtn:hover {
+  background: #f9fafb;
+}
+
+.feesBtn:active {
+  transform: scale(0.98);
+}
+
+.saveContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.saveBtn {
+  background: #d9d9d9;
+  color: black;
+  font-weight: 800;
+  padding: 0.875rem 4rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.saveBtn:hover {
+  background: #c1c1c1;
+}
+
+.saveBtn:active {
+  transform: scale(0.98);
+}
+
+.saveBtn.saving {
+  opacity: 0.7;
+}
+
+.saveBtn.saved {
+  background: #4ade80;
+  color: white;
+}
+
+.scrollIndicator {
+  position: fixed;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.scrollLine {
+  width: 2px;
+  height: 1.5rem;
+  background: #e5e7eb;
+  border-radius: 9999px;
+}
+
+.scrollDot {
+  width: 6px;
+  height: 6px;
+  background: #7b68d3;
+  border-radius: 9999px;
+}
+
+.scrollLineLong {
+  height: 6rem;
+}
+
+/* ─── Change Password Modal ─── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalContainer {
+  background: white;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modalBody {
+  margin-bottom: 1rem;
+}
+
+.modalLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.modalInputWrapper {
+  position: relative;
+}
+
+.modalInput {
+  width: 100%;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.modalInput:focus {
+  border-color: #7b68d3;
+  background: white;
+}
+
+.modalEyeBtn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.modalEyeBtn:hover {
+  color: #475569;
+}
+
+.modalForgotRow {
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+.modalForgotBtn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.modalForgotBtn:hover {
+  color: #7b68d3;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.modalCancelBtn {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #7b68d3;
+  color: #7b68d3;
+  font-weight: 800;
+  border-radius: 9999px;
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modalCancelBtn:hover {
+  background: #f5f3ff;
+}
+
+.modalSaveBtn {
+  flex: 1;
+  padding: 1rem;
+  background: #7b68d3;
+  color: white;
+  font-weight: 800;
+  border-radius: 9999px;
+  border: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(123, 104, 211, 0.25);
+}
+
+.modalSaveBtn:hover {
+  background: #6a57c4;
+}
+
+/* ─── Add Skill Modal ─── */
+.skillModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.skillModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.skillModalContainer {
+  background: white;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+.skillModalCloseBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #9ca3af;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.skillModalCloseBtn:hover {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.skillModalTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+.skillInputWrap {
+  margin-bottom: 1.5rem;
+}
+
+.skillInput {
+  width: 100%;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.skillInput::placeholder {
+  color: #94a3b8;
+}
+
+.skillInput:focus {
+  border-color: #7b68d3;
+  background: white;
+}
+
+.skillSuggestSection {
+  margin-bottom: 2.5rem;
+}
+
+.skillSuggestTitle {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.skillChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skillChip {
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid #e2e8f0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skillChip:hover {
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.skillChipActive {
+  border-color: #7b68d3;
+  background: #f5f3ff;
+  color: #7b68d3;
+}
+
+.skillActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.skillCancelBtn {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #7b68d3;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.875rem;
+  background: transparent;
+  color: #7b68d3;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skillCancelBtn:hover {
+  background: #f5f3ff;
+}
+
+.skillSaveBtn {
+  flex: 1;
+  padding: 1rem;
+  background: #7b68d3;
+  color: white;
+  font-weight: 800;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(123, 104, 211, 0.25);
+  transition: all 0.2s;
+}
+
+.skillSaveBtn:hover {
+  background: #6a57c4;
+}
