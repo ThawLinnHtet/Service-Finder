@@ -1,0 +1,1 @@
+export const MAX_ACTIVE_SERVICES_PER_PROVIDER = 3;
